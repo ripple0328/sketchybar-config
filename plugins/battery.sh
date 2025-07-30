@@ -2,27 +2,41 @@
 
 PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
+BATTERY_INFO="$(pmset -g batt)"
 
+# Check if this is a desktop (AC only) or laptop (has battery)
 if [ "$PERCENTAGE" = "" ]; then
-  exit 0
+  # No battery detected - this is likely a desktop Mac
+  if [[ "$CHARGING" != "" ]]; then
+    # AC Power detected
+    ICON="󰚥"  # AC power icon
+    LABEL="AC"
+  else
+    # Fallback for unknown power state
+    ICON="󰚥"
+    LABEL="PWR"
+  fi
+else
+  # Battery detected - this is a laptop/portable device
+  case "${PERCENTAGE}" in
+    9[0-9]|100) ICON="󰁹"  # Full battery
+    ;;
+    [6-8][0-9]) ICON="󰂀"  # High battery  
+    ;;
+    [3-5][0-9]) ICON="󰁾"  # Medium battery
+    ;;
+    [1-2][0-9]) ICON="󰁻"  # Low battery
+    ;;
+    *) ICON="󰂎"          # Very low/critical battery
+  esac
+  
+  # Override with charging icon if plugged in
+  if [[ "$CHARGING" != "" ]]; then
+    ICON="󰂄"  # Charging icon
+  fi
+  
+  LABEL="${PERCENTAGE}%"
 fi
 
-case "${PERCENTAGE}" in
-  9[0-9]|100) ICON=""
-  ;;
-  [6-8][0-9]) ICON=""
-  ;;
-  [3-5][0-9]) ICON=""
-  ;;
-  [1-2][0-9]) ICON=""
-  ;;
-  *) ICON=""
-esac
-
-if [[ "$CHARGING" != "" ]]; then
-  ICON=""
-fi
-
-# The item invoking this script (name $NAME) will get its icon and label
-# updated with the current battery status
-sketchybar --set "$NAME" icon="$ICON" label="${PERCENTAGE}%"
+# Update the item with appropriate icon and label
+sketchybar --set "$NAME" icon="$ICON" label="$LABEL"

@@ -11,11 +11,15 @@ sketchybar --add item aerospace_mode center \
            --set aerospace_mode \
            drawing=off \
            background.drawing=off \
-                      background.color=$RED \
-           background.corner_radius=10 \
-           background.height=32 \
-           icon.color=$BLACK \
-           label.color=$BLACK \
+           padding_left=10 \
+           padding_right=10 \
+           icon.color=$BLUE \
+           icon.padding_left=0 \
+           icon.padding_right=6 \
+           label.color=$WHITE \
+           label.padding_left=0 \
+           label.padding_right=0 \
+           label.font="SF Pro:Medium:11.0" \
            script="$PLUGIN_DIR/aerospace_mode.sh" \
            click_script="aerospace mode main && ~/.config/sketchybar/plugins/aerospace_mode.sh main" \
            --subscribe aerospace_mode aerospace_mode_change 

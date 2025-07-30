@@ -24,3 +24,5 @@ sketchybar --add       item            github.bell right                  \
                                        background.padding_right=7         \
                                        icon.background.height=2           \
                                        icon.background.y_offset=-12
+
+
