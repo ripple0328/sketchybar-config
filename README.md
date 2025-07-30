@@ -30,6 +30,14 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 - **Date & Time**: Calendar and clock with app shortcuts
 - **Advanced CPU**: Optional enhanced CPU tracking via custom C helper
 
+### 🔔 **GitHub Integration**
+- **Real-time Notifications**: Monitor GitHub notifications with 3-minute updates
+- **Color-coded Types**: Different colors for Issues (green), PRs (magenta), Discussions (white), Commits (white)
+- **Interactive Popup**: Hover to see detailed notification list with repo names and titles
+- **Priority Alerts**: Red highlighting for important notifications (deprecation, breaking changes)
+- **Click Actions**: Click notifications to open directly in browser
+- **Notification Count**: Badge showing total unread notification count
+
 ### 🎨 **Visual Design**
 - **Catppuccin Color Scheme**: Modern, eye-friendly color palette
 - **Nerd Font Icons**: Rich iconography with proper app recognition
@@ -42,6 +50,8 @@ This configuration requires:
 - **SketchyBar** (`brew install FelixKratz/formulae/sketchybar`)
 - **Aerospace** (`brew install --cask nikitabobko/tap/aerospace`) 
 - **MesloLGS Nerd Font** (`brew install font-meslo-lg-nerd-font`)
+- **GitHub CLI** (`brew install gh`) - for GitHub notifications
+- **jq** (`brew install jq`) - for JSON parsing in GitHub plugin
 - **sketchybar-app-font** (optional, for app icons in workspaces)
 - **Aerospace Config** ([ripple0328/aerospace-config](https://github.com/ripple0328/aerospace-config) for complete integration)
 
@@ -68,7 +78,19 @@ cd ~/.config/sketchybar/helper
 make
 ```
 
-### 3. Start SketchyBar
+### 3. Setup GitHub Integration (Optional)
+
+For GitHub notifications support:
+
+```bash
+# Authenticate with GitHub CLI
+gh auth login
+
+# Test GitHub CLI access
+gh api notifications
+```
+
+### 4. Start SketchyBar
 
 ```bash
 brew services start sketchybar
@@ -88,6 +110,7 @@ sketchybar/
 │   ├── system_monitor.sh # CPU, memory, temperature monitoring
 │   ├── system_status.sh  # Battery, volume, calendar, clock
 │   ├── aerospace_mode.sh # Mode indicator (resize/move/service)
+│   ├── github.sh         # GitHub notifications
 │   └── spacers.sh        # Visual spacing elements
 ├── plugins/              # Dynamic content scripts
 │   ├── aerospace.sh      # Workspace management & app icons
@@ -98,6 +121,7 @@ sketchybar/
 │   ├── temperature.sh    # Temperature monitoring
 │   ├── battery.sh        # Battery status & charging
 │   ├── volume.sh         # Volume level display
+│   ├── github.sh         # GitHub notifications monitoring
 │   ├── workspace_click.sh # Workspace switching logic
 │   └── *.sh              # Additional system monitors
 └── helper/               # C program for advanced CPU monitoring
@@ -243,6 +267,7 @@ sketchybar --add item my_item right \
 | `temperature.sh` | Temperature monitoring | `istats` (optional), `smc` (optional) |
 | `battery.sh` | Battery status | `pmset` (built-in) |
 | `volume.sh` | Volume control | `osascript` (built-in) |
+| `github.sh` | GitHub notifications | `gh`, `jq` |
 | `icon_map.sh` | App icon mapping | sketchybar-app-font |
 | `clock.sh` | Date/time display | `date` (built-in) |
 
@@ -332,6 +357,21 @@ sketchybar --add item my_item right \
    
    # Test manually
    ./helper cpu
+   ```
+
+7. **GitHub notifications not showing**
+   ```bash
+   # Check GitHub CLI authentication
+   gh auth status
+   
+   # Test API access
+   gh api notifications
+   
+   # Check dependencies
+   which gh jq
+   
+   # Test plugin manually
+   NAME=github.bell ~/.config/sketchybar/plugins/github.sh
    ```
 
 ### Testing

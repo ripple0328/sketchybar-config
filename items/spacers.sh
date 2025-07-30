@@ -20,4 +20,8 @@ sketchybar --add item separator2 left \
 
 
 
+
+
+
+
  

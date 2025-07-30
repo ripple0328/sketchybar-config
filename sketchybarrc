@@ -74,8 +74,8 @@ source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/workspaces.sh"
 source "$ITEM_DIR/spacers.sh"
 source "$ITEM_DIR/app_info.sh"
-source "$ITEM_DIR/system_status.sh"
 source "$ITEM_DIR/system_monitor.sh"
+source "$ITEM_DIR/system_status.sh"
 source "$ITEM_DIR/aerospace_mode.sh"
 source "$ITEM_DIR/github.sh"
 
@@ -109,25 +109,24 @@ sketchybar --add bracket aerospace_mode_bracket aerospace_mode \
                                        background.corner_radius=16 \
                                        background.height=32
 
-# Right Segment 1: System Monitoring (CPU, memory, temperature)
-sketchybar --add bracket system_monitor cpu_simple memory temperature \
-           --set system_monitor background.color=$BACKGROUND_2 \
-                               background.corner_radius=16 \
-                               background.height=32 \
-                               background.padding_right=20
-
-# Right Segment 2: GitHub Notifications
-sketchybar --add bracket github_notifications github.bell \
-           --set github_notifications background.color=$BACKGROUND_1 \
-                                     background.corner_radius=16 \
-                                     background.height=32 \
-                                     background.padding_right=20
-
-# Right Segment 3: System Status (battery, volume, calendar, clock)  
+# System Status Segment (rightmost, with padding to create gap)
 sketchybar --add bracket system_status battery volume calendar clock \
            --set system_status background.color=$BACKGROUND_1 \
                               background.corner_radius=16 \
-                              background.height=32
+                              background.height=32 \
+                              padding_left=20
+
+# GitHub Notifications Segment
+sketchybar --add bracket github_notifications github.bell \
+           --set github_notifications background.color=$BACKGROUND_1 \
+                                     background.corner_radius=16 \
+                                     background.height=32
+
+# System Monitor Segment
+sketchybar --add bracket system_monitor cpu_simple memory temperature \
+           --set system_monitor background.color=$BACKGROUND_2 \
+                               background.corner_radius=16 \
+                               background.height=32
 
 ##### Finalize #####
 sketchybar --update
