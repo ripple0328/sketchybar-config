@@ -2,6 +2,16 @@
 
 Custom SketchyBar setup with deep **Aerospace** window manager integration and segmented design.
 
+## 📸 Screenshots
+
+![SketchyBar Screenshot 1](images/Screenshot%202025-07-30%20at%2004.34.47.png)
+
+![SketchyBar Screenshot 2](images/Screenshot%202025-07-30%20at%2004.36.11.png)
+
+![SketchyBar Screenshot 3](images/Screenshot%202025-07-30%20at%2004.37.04.png)
+
+![SketchyBar Screenshot 4](images/Screenshot%202025-07-30%20at%2004.37.21.png)
+
 > 🔗 **Related Config**: See the [Aerospace configuration](https://github.com/ripple0328/aerospace-config) for the complete window manager setup that powers this status bar.
 
 > ✨ **Recent Update**: Configuration cleaned up to remove unreferenced files. Only actively used components remain for a leaner setup.
@@ -30,10 +40,10 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 - **Battery**: Percentage with charging status and visual indicators
 - **Volume**: Current level with click-to-adjust functionality
 - **Date & Time**: Calendar and clock with app shortcuts
-- **Advanced CPU**: Optional enhanced CPU tracking via custom C helper
+- **Simple CPU**: Real-time CPU usage tracking via built-in commands
 
 ### 🔔 **GitHub Integration**
-- **Real-time Notifications**: Monitor GitHub notifications with 3-minute updates
+- **Real-time Notifications**: Monitor GitHub notifications with 3-minute updates (180 seconds)
 - **Color-coded Types**: Different colors for Issues (green), PRs (magenta), Discussions (white), Commits (white)
 - **Interactive Popup**: Hover to see detailed notification list with repo names and titles
 - **Priority Alerts**: Red highlighting for important notifications (deprecation, breaking changes)
@@ -54,8 +64,13 @@ This configuration requires:
 - **MesloLGS Nerd Font** (`brew install font-meslo-lg-nerd-font`)
 - **GitHub CLI** (`brew install gh`) - for GitHub notifications
 - **jq** (`brew install jq`) - for JSON parsing in GitHub plugin
-- **sketchybar-app-font** (optional, for app icons in workspaces)
+- **sketchybar-app-font** (`brew install font-sketchybar-app-font`) - for app icons in workspaces
 - **Aerospace Config** ([ripple0328/aerospace-config](https://github.com/ripple0328/aerospace-config) for complete integration)
+
+### Optional Temperature Tools
+For more accurate temperature readings:
+- **iStats** (`gem install iStats`) - preferred method
+- **smc** command (if available) - fallback method
 
 ## 🛠️ Setup
 
@@ -71,16 +86,9 @@ chmod +x ~/.config/sketchybar/plugins/*.sh
 chmod +x ~/.config/sketchybar/items/*.sh
 ```
 
-### 2. Build Helper Program (Optional)
 
-Enhanced CPU monitoring via custom C helper:
 
-```bash
-cd ~/.config/sketchybar/helper
-make
-```
-
-### 3. Setup GitHub Integration (Optional)
+### 2. Setup GitHub Integration (Optional)
 
 For GitHub notifications support:
 
@@ -92,7 +100,7 @@ gh auth login
 gh api notifications
 ```
 
-### 4. Start SketchyBar
+### 3. Start SketchyBar
 
 ```bash
 brew services start sketchybar
@@ -130,11 +138,7 @@ sketchybar/
 │   ├── front_app.sh      # Current app detection
 │   ├── front_app_click.sh # Front app click actions
 │   └── workspace_click.sh # Workspace switching logic
-└── helper/               # C program for advanced CPU monitoring
-    ├── helper.c          # Main program
-    ├── cpu.h             # CPU monitoring functions
-    ├── sketchybar.h      # SketchyBar integration
-    └── Makefile          # Build configuration
+
 ```
 
 ## 📊 System Monitoring Details
@@ -172,11 +176,7 @@ The configuration includes a dedicated system monitoring segment with live metri
   - 🟠 Orange: 70-80°C (hot)
   - 🔴 Red: 80°C+ (critical)
 
-### Optional Temperature Tools
-For more accurate temperature readings, install iStats:
-```bash
-gem install iStats
-```
+
 
 ## 🚀 Aerospace Integration Details
 
@@ -208,16 +208,19 @@ Edit `colors.sh` to modify the color scheme:
 
 ```bash
 # Catppuccin color palette
-export BLACK=0xff181926   # Black:   #181926 󰝤
-export WHITE=0xffcad3f5   # White:   #cad3f5 󰝥
-export RED=0xffed8796     # Red:     #ed8796 󰝦
-export GREEN=0xffa6da95   # Green:   #a6da95 󰝧
-export BLUE=0xff8aadf4    # Blue:    #8aadf4 󰝨
+export BLACK=0xff181926   # Black:   #181926
+export WHITE=0xffcad3f5   # White:   #cad3f5
+export RED=0xffed8796     # Red:     #ed8796
+export GREEN=0xffa6da95   # Green:   #a6da95
+export BLUE=0xff8aadf4    # Blue:    #8aadf4
+export YELLOW=0xffeed49f  # Yellow:  #eed49f
+export ORANGE=0xfff5a97f  # Orange:  #f5a97f
+export MAGENTA=0xffc6a0f6 # Magenta: #c6a0f6
+export GREY=0xff939ab7    # Grey:    #939ab7
 
-# Nerd Font color sample (for use in SketchyBar):
-# 󰝤 BLACK   󰝥 WHITE   󰝦 RED   󰝧 GREEN   󰝨 BLUE
-# (These are Catppuccin palette icons from Nerd Font, e.g. U+F764–F768)
-# ... customize as needed
+# Background colors
+export BACKGROUND_1=0x903c3e4f  # Semi-transparent backgrounds
+export BACKGROUND_2=0x90494d64
 ```
 
 ### 🔠 **Changing Fonts**
@@ -277,6 +280,11 @@ sketchybar --add item my_item right \
 | `github.sh` | GitHub notifications | `gh`, `jq` |
 | `icon_map.sh` | App icon mapping | sketchybar-app-font |
 | `clock.sh` | Date/time display | `date` (built-in) |
+| `calendar.sh` | Calendar display | `date` (built-in) |
+| `front_app.sh` | Current app detection | Built-in |
+| `front_app_click.sh` | Front app click actions | Built-in |
+| `workspace_click.sh` | Workspace switching logic | Aerospace |
+| `volume_click.sh` | Volume control interactions | `osascript` (built-in) |
 
 ### Custom Scripts
 
@@ -356,15 +364,7 @@ sketchybar --add item my_item right \
    ~/.config/sketchybar/plugins/icon_map.sh "Google Chrome"
    ```
 
-6. **Helper program CPU monitoring not working**
-   ```bash
-   # Rebuild the helper
-   cd ~/.config/sketchybar/helper
-   make clean && make
-   
-   # Test manually
-   ./helper cpu
-   ```
+
 
 7. **GitHub notifications not showing**
    ```bash

@@ -43,12 +43,5 @@ for i in "${!WORKSPACE_LIST[@]}"; do
         script="$PLUGIN_DIR/aerospace.sh $sid"
 done
 
-# Create a refresh trigger script for workspace updates
-sketchybar --add item workspace_refresh left \
-    --set workspace_refresh \
-    script="$PLUGIN_DIR/refresh_workspaces.sh" \
-    drawing=off \
-    --subscribe workspace_refresh aerospace_workspace_change
-
 # Export workspace items array for use in main config
 echo "${WORKSPACE_ITEMS[@]}" > /tmp/sketchybar_workspace_items 
