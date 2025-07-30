@@ -32,21 +32,25 @@ A professional, well-organized SketchyBar configuration with full Aerospace inte
 ## 🚀 Quick Start
 
 1. **Install dependencies:**
+
    ```bash
    brew install sketchybar gh aerospace
    ```
 
 2. **Clone or copy this configuration:**
+
    ```bash
    cp -r /path/to/this/config ~/.config/sketchybar
    ```
 
 3. **Start SketchyBar:**
+
    ```bash
    brew services start sketchybar
    ```
 
 4. **Restart the configuration:**
+
    ```bash
    sketchybar --reload
    ```
@@ -56,12 +60,14 @@ A professional, well-organized SketchyBar configuration with full Aerospace inte
 ### 1. **Items vs Plugins - Clear Distinction**
 
 **Items** (`items/` directory):
+
 - Define **what** appears on the bar (sketchybar items)
 - Configure appearance, position, and static properties
 - Set up click handlers and subscriptions
 - Should contain `sketchybar --add item` and `sketchybar --set` commands
 
 **Plugins** (`plugins/` directory):
+
 - Define **how** content is generated/updated (executable scripts)
 - Handle dynamic content updates and data processing
 - Receive events and update item properties
@@ -70,6 +76,7 @@ A professional, well-organized SketchyBar configuration with full Aerospace inte
 ### 2. **Segments - Logical Grouping**
 
 **Segments** (`segments/` directory):
+
 - Group related items into visual segments (brackets)
 - Define the visual grouping and layout of items
 - Handle bracket creation and styling
@@ -77,7 +84,7 @@ A professional, well-organized SketchyBar configuration with full Aerospace inte
 
 ### 3. **File Structure**
 
-```
+```text
 sketchybar/
 ├── sketchybarrc                      # Main config - orchestrates loading
 ├── README.md                         # This documentation  
@@ -173,17 +180,20 @@ sketchybar/
 ### 7. **Modification Guide**
 
 **Adding a new item:**
+
 1. Create item definition in appropriate `items/` subdirectory
 2. Create plugin script in appropriate `plugins/` subdirectory  
 3. Add item to relevant segment file
 4. Update main config to load the new files
 
 **Adding a new segment:**
+
 1. Create segment file in appropriate `segments/` subdirectory
 2. Define bracket and styling in the segment file
 3. Reference segment in main config
 
 **Modifying themes:**
+
 1. Edit theme files in `themes/` directory
 2. Changes will automatically apply to all items using theme variables
 
@@ -198,6 +208,7 @@ This configuration includes multiple professionally crafted themes:
 - **Gruvbox** - Retro groove colors
 
 Switch themes easily:
+
 ```bash
 # Set theme (theme name from themes/ directory)
 echo "catppuccin" > ~/.config/sketchybar/themes/current-theme.txt
@@ -207,17 +218,20 @@ sketchybar --reload
 ## 🔧 Customization
 
 ### Adding a New Item
+
 1. Create item definition: `items/category/item_name.sh`
 2. Create plugin script: `plugins/category/item_name.sh`
 3. Add to relevant segment: `segments/position/segment_name.sh`
 4. Load in main config: `sketchybarrc`
 
 ### Creating a New Theme
+
 1. Copy `themes/template.sh` to `themes/your_theme.sh`
 2. Modify colors to match your design
 3. Set as current theme
 
 ### Modifying Segments
+
 - Edit segment files in `segments/` to change visual grouping
 - Segments control bracket styling and item grouping
 
@@ -226,6 +240,7 @@ sketchybar --reload
 ### Common Issues
 
 **SketchyBar not starting:**
+
 ```bash
 # Check if SketchyBar is running
 pgrep sketchybar
@@ -236,19 +251,23 @@ brew services restart sketchybar
 ```
 
 **Missing icons:**
+
 - Install a Nerd Font (MesloLGS recommended)
 - Update font references in theme files
 
 **Aerospace integration not working:**
+
 - Ensure Aerospace is installed and configured
 - Check that workspace scripts have execute permissions
 
 **Theme not loading:**
+
 - Verify theme file exists in `themes/` directory
 - Check `themes/current-theme.txt` content
 - Ensure theme file has proper variable exports
 
 ### Debug Mode
+
 ```bash
 # Enable verbose logging
 sketchybar --reload --verbose
@@ -274,6 +293,7 @@ sketchybar --reload --verbose
 ## Current Implementation
 
 This professionally refactored configuration provides:
+
 - ✅ Clear separation of concerns between items, plugins, and segments
 - ✅ Modular architecture for easy maintenance and extension
 - ✅ Comprehensive theming system with multiple built-in themes

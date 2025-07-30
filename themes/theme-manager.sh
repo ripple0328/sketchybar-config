@@ -160,7 +160,15 @@ case "$1" in
         ;;
     *)
         # Check if it's a valid theme name
-        if [[ " ${THEMES[@]} " =~ " $1 " ]]; then
+        theme_found=false
+        for theme in "${THEMES[@]}"; do
+            if [[ "$theme" == "$1" ]]; then
+                theme_found=true
+                break
+            fi
+        done
+        
+        if $theme_found; then
             apply_theme "$1"
         else
             echo -e "${RED}Error: Unknown theme '$1'${NC}"
