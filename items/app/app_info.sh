@@ -3,7 +3,8 @@
 # App Info Items
 # This creates the chevron separator and front app display
 
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+# Load global configuration
+source "$HOME/.config/sketchybar/config/globals.sh"
 
 # Chevron separator
 sketchybar --add item chevron left \
@@ -18,6 +19,6 @@ sketchybar --add item front_app left \
            icon.drawing=off \
            background.drawing=off \
            padding_right=10 \
-           script="$PLUGIN_DIR/front_app.sh" \
-           click_script="$PLUGIN_DIR/front_app_click.sh" \
+           script="$PLUGIN_DIR/utils/front_app.sh" \
+           click_script="$PLUGIN_DIR/utils/front_app_click.sh" \
            --subscribe front_app front_app_switched 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Load theme colors
-source "$HOME/.config/sketchybar/themes/load-theme.sh"
+# Load global configuration
+source "$HOME/.config/sketchybar/config/globals.sh"
 
 PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"

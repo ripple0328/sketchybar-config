@@ -3,10 +3,8 @@
 # Aerospace Workspace Items with App Icon Expansion
 # This creates workspace indicators that expand to show app icons when active
 
-# Load theme colors and fonts
-source "$HOME/.config/sketchybar/themes/load-theme.sh"
-
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+# Load global configuration
+source "$HOME/.config/sketchybar/config/globals.sh"
 
 # Get all workspaces from aerospace and create items for them
 WORKSPACE_ITEMS=()
@@ -43,8 +41,8 @@ for i in "${!WORKSPACE_LIST[@]}"; do
         background.drawing=off \
         padding_right=$PADDING_RIGHT \
         update_freq=2 \
-        click_script="$PLUGIN_DIR/workspace_click.sh $sid" \
-        script="$PLUGIN_DIR/aerospace.sh $sid"
+        click_script="$PLUGIN_DIR/utils/workspace_click.sh $sid" \
+        script="$PLUGIN_DIR/workspace/aerospace.sh $sid"
 done
 
 # Export workspace items array for use in main config

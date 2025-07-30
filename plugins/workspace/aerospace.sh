@@ -3,8 +3,8 @@
 # SketchyBar plugin for Aerospace workspace management
 # This script handles workspace highlighting and app icon expansion
 
-# Load theme colors
-source "$HOME/.config/sketchybar/themes/load-theme.sh"
+# Load global configuration
+source "$HOME/.config/sketchybar/config/globals.sh"
 
 # The workspace ID is passed as the first argument
 WORKSPACE_ID="$1"
@@ -34,7 +34,7 @@ get_workspace_apps() {
         while IFS= read -r app; do
             if [ -n "$app" ]; then
                 # Get icon for the app using icon_map.sh
-                local app_icon=$("$HOME/.config/sketchybar/plugins/icon_map.sh" "$app")
+                local app_icon=$("$PLUGIN_DIR/utils/icon_map.sh" "$app")
                 if [ -n "$app_icon" ]; then
                     # Add small dot indicator for focused app
                     if [ "$app" = "$focused_app" ]; then

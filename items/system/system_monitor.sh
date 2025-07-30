@@ -3,7 +3,8 @@
 # System Monitor Items
 # This creates a second right-side segment with system monitoring
 
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+# Load global configuration
+source "$HOME/.config/sketchybar/config/globals.sh"
 
 # Temperature (rightmost item in system monitor segment)
 sketchybar --add item temperature right \
@@ -13,7 +14,7 @@ sketchybar --add item temperature right \
         icon.color=$WARNING_COLOR \
            background.drawing=off \
            padding_right=8 \
-           script="$PLUGIN_DIR/temperature.sh"
+           script="$PLUGIN_DIR/system/temperature.sh"
 
 # Memory Usage
 sketchybar --add item memory right \
@@ -22,7 +23,7 @@ sketchybar --add item memory right \
                    icon="$MEMORY" \
         icon.color=$ACCENT_COLOR \
            background.drawing=off \
-           script="$PLUGIN_DIR/memory.sh"
+           script="$PLUGIN_DIR/system/memory.sh"
 
 # CPU Usage (simple version, different from the complex cpu.sh)
 sketchybar --add item cpu_simple right \
@@ -31,4 +32,4 @@ sketchybar --add item cpu_simple right \
                    icon="$CPU" \
         icon.color=$SUCCESS_COLOR \
            background.drawing=off \
-           script="$PLUGIN_DIR/cpu_simple.sh"
+           script="$PLUGIN_DIR/system/cpu_simple.sh"

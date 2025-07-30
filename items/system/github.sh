@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# Load global configuration
+source "$HOME/.config/sketchybar/config/globals.sh"
+
 POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
 
 sketchybar --add       item            github.bell right                  \
@@ -11,7 +14,7 @@ sketchybar --add       item            github.bell right                  \
                                        background.drawing=off             \
                                        padding_right=8                    \
                                        popup.align=right                  \
-                                       script="$PLUGIN_DIR/github.sh"     \
+                                       script="$PLUGIN_DIR/system/github.sh"     \
                                        click_script="$POPUP_CLICK_SCRIPT" \
            --subscribe github.bell     mouse.entered                      \
                                        mouse.exited                       \

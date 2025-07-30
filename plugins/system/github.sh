@@ -1,8 +1,7 @@
 #!/bin/sh
 
 update() {
-  source "$HOME/.config/sketchybar/themes/load-theme.sh"
-  source "$HOME/.config/sketchybar/icons.sh"
+  source "$HOME/.config/sketchybar/config/globals.sh"
 
   NOTIFICATIONS="$(gh api notifications)"
   COUNT="$(echo "$NOTIFICATIONS" | jq 'length')"

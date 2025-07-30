@@ -1,121 +1,36 @@
 #!/usr/bin/env bash
 
-# SketchyBar configuration for Aerospace window manager
-# This configuration creates segmented bars with adaptive widths
+# SketchyBar Main Configuration
+# This is the entry point for the SketchyBar configuration
+# 
+# See README.md for organizational principles and structure documentation
 
-# Configuration  
-# Fonts are now defined in themes
-ITEM_DIR="$HOME/.config/sketchybar/items"       # Directory where the items are configured
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins"   # Directory where plugin scripts are stored
-source "$HOME/.config/sketchybar/themes/load-theme.sh"  # Loads current theme colors
-source "$HOME/.config/sketchybar/icons.sh"      # Loads all defined icons
-PADDINGS=3
+# Load Core Configuration
+source "$HOME/.config/sketchybar/config/globals.sh"
+source "$HOME/.config/sketchybar/config/bar.sh"
+source "$HOME/.config/sketchybar/config/defaults.sh"
+source "$HOME/.config/sketchybar/config/events.sh"
 
-##### Bar Appearance #####
-# Transparent main bar to let segments show through
-bar=(
-  height=35
-  color=$TRANSPARENT
-  shadow=off
-  position=top
-  sticky=on
-  padding_right=12
-  padding_left=12
-  corner_radius=18
-  y_offset=3
-  blur_radius=0
-  notch_width=0
-)
+# Load Items (define what appears on the bar)
+source "$ITEM_DIR/app/apple.sh"
+source "$ITEM_DIR/workspace/workspaces.sh"
+source "$ITEM_DIR/app/app_info.sh"
+source "$ITEM_DIR/system/system_monitor.sh"
+source "$ITEM_DIR/system/system_status.sh"
+source "$ITEM_DIR/workspace/aerospace_mode.sh"
+source "$ITEM_DIR/system/github.sh"
 
-sketchybar --bar "${bar[@]}"
+# Load Segments (group items visually)
+source "$SEGMENT_DIR/left/apple_workspace.sh"
+source "$SEGMENT_DIR/left/app_info.sh"
+source "$SEGMENT_DIR/center/aerospace_mode.sh"
+source "$SEGMENT_DIR/right/system_monitor.sh"
+source "$SEGMENT_DIR/right/system_status.sh"
 
-##### Default Item Settings #####
-defaults=(
-  updates=when_shown
-  icon.font="$FONT:Regular:16.0"
-  icon.color=$ICON_COLOR
-  icon.padding_left=$PADDINGS
-  icon.padding_right=2
-  label.font="$FONT:Regular:10.0"
-  label.color=$LABEL_COLOR
-  label.padding_left=2
-  label.padding_right=$PADDINGS
-  background.padding_right=$PADDINGS
-  background.padding_left=$PADDINGS
-  background.height=30
-  background.corner_radius=10
-  popup.background.border_width=0
-  popup.background.corner_radius=12
-  popup.background.color=$POPUP_BACKGROUND_COLOR
-  popup.background.shadow.color=$POPUP_SHADOW_COLOR
-  popup.blur_radius=30
-  popup.background.shadow.drawing=on
-)
-
-sketchybar --default "${defaults[@]}"
-
-##### Events #####
-sketchybar --add event aerospace_workspace_change
-sketchybar --add event aerospace_mode_change
-
-##### Load Item Files #####
-# Load all items from separate files
-source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/workspaces.sh"
-source "$ITEM_DIR/spacers.sh"
-source "$ITEM_DIR/app_info.sh"
-source "$ITEM_DIR/system_monitor.sh"
-source "$ITEM_DIR/system_status.sh"
-source "$ITEM_DIR/aerospace_mode.sh"
-source "$ITEM_DIR/github.sh"
-
-##### Create Segments with Brackets #####
-# Read workspace items from temp file
-WORKSPACE_ITEMS=($(cat /tmp/sketchybar_workspace_items 2>/dev/null || echo ""))
-
-# Left Segment 1: Apple Logo + Workspaces
-if [ ${#WORKSPACE_ITEMS[@]} -gt 0 ]; then
-    sketchybar --add bracket apple_spaces apple.logo "${WORKSPACE_ITEMS[@]}" \
-               --set apple_spaces background.color=$BACKGROUND_1 \
-                                 background.corner_radius=16 \
-                                 background.height=32
-else
-    # Fallback if no workspaces found
-    sketchybar --add bracket apple_spaces apple.logo \
-               --set apple_spaces background.color=$BACKGROUND_1 \
-                                 background.corner_radius=16 \
-                                 background.height=32
-fi
-
-# Left Segment 2: App Info (chevron + front app)
-sketchybar --add bracket app_info chevron front_app \
-           --set app_info background.color=$BACKGROUND_1 \
-                         background.corner_radius=16 \
-                         background.height=32
-
-# Center Segment: Aerospace Mode (when visible)
-sketchybar --add bracket aerospace_mode_bracket aerospace_mode \
-           --set aerospace_mode_bracket background.color=$ACCENT_COLOR \
-                                       background.corner_radius=16 \
-                                       background.height=32
-
-# System Status Segment (rightmost, with padding to create gap)
-sketchybar --add bracket system_status github.bell battery volume calendar clock \
-           --set system_status background.color=$BACKGROUND_1 \
-                              background.corner_radius=16 \
-                              background.height=32 \
-                              padding_left=20
-
-# System Monitor Segment
-sketchybar --add bracket system_monitor cpu_simple memory temperature \
-           --set system_monitor background.color=$BACKGROUND_2 \
-                               background.corner_radius=16 \
-                               background.height=32
-
-##### Finalize #####
+# Finalize Configuration
 sketchybar --update
 
-# Initialize aerospace mode indicator
+# Initialize Dynamic Content
 sketchybar --trigger aerospace_mode_change
 
 # Initialize current workspace highlighting
