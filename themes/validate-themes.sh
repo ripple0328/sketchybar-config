@@ -3,7 +3,17 @@
 # Theme Validation Script
 # Checks that all themes have the required color definitions
 
-THEME_DIR="$HOME/.config/sketchybar/themes"
+# Detect the correct theme directory dynamically
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Check if we're running from repo root or themes directory
+if [[ "$SCRIPT_DIR" == */themes ]]; then
+    # Running from themes directory (or called from themes dir)
+    THEME_DIR="$SCRIPT_DIR"
+else
+    # Running from repo root (CI scenario)
+    THEME_DIR="$SCRIPT_DIR/themes"
+fi
 THEMES=("catppuccin" "tokyo-night" "gruvbox" "nord" "dracula")
 
 # Required core colors that all themes must have
