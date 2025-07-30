@@ -5,12 +5,13 @@
 
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
-# Clock
+# Clock (rightmost item in system status - needs right padding)
 sketchybar --add item clock right \
            --set clock \
            update_freq=10 \
            icon.drawing=off \
            background.drawing=off \
+           padding_right=10 \
            script="$PLUGIN_DIR/clock.sh" \
            click_script="open -a Clock"
 
@@ -23,10 +24,11 @@ sketchybar --add item calendar right \
            script="$PLUGIN_DIR/calendar.sh" \
            click_script="open -a Calendar"
 
-# Volume
+# Volume (fix cut-off text with more padding)
 sketchybar --add item volume right \
            --set volume \
            background.drawing=off \
+           padding_right=15 \
            script="$PLUGIN_DIR/volume.sh" \
            click_script="$PLUGIN_DIR/volume_click.sh" \
            --subscribe volume volume_change

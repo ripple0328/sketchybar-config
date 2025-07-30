@@ -12,11 +12,12 @@ sketchybar --add item chevron left \
            label.drawing=off \
            background.drawing=off
 
-# Front app display
+# Front app display (rightmost item in app_info segment)
 sketchybar --add item front_app left \
            --set front_app \
            icon.drawing=off \
            background.drawing=off \
+           padding_right=10 \
            script="$PLUGIN_DIR/front_app.sh" \
            click_script="$PLUGIN_DIR/front_app_click.sh" \
            --subscribe front_app front_app_switched 

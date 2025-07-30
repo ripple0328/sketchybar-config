@@ -16,4 +16,8 @@ sketchybar --add item separator2 left \
            icon="" \
            label="" \
            background.drawing=off \
-           width=15 
+           width=15
+
+
+
+ 

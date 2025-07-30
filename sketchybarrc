@@ -19,11 +19,11 @@ bar=(
   shadow=off
   position=top
   sticky=on
-  padding_right=20
-  padding_left=20
-  corner_radius=15
+  padding_right=12
+  padding_left=12
+  corner_radius=10
   y_offset=3
-  margin=10
+  margin=0
   blur_radius=0
   notch_width=0
 )
@@ -59,14 +59,23 @@ sketchybar --default "${defaults[@]}"
 sketchybar --add event aerospace_workspace_change
 sketchybar --add event aerospace_mode_change
 
+# Add event handler for workspace changes to trigger app icon refresh
+sketchybar --add item aerospace_event_handler left \
+    --set aerospace_event_handler \
+    script="$HOME/.config/sketchybar/plugins/refresh_workspaces.sh" \
+    drawing=off \
+    --subscribe aerospace_event_handler aerospace_workspace_change
+
+
+
 ##### Load Item Files #####
 # Load all items from separate files
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/workspaces.sh"
 source "$ITEM_DIR/spacers.sh"
 source "$ITEM_DIR/app_info.sh"
-source "$ITEM_DIR/aerospace_mode.sh"
 source "$ITEM_DIR/system_status.sh"
+source "$ITEM_DIR/aerospace_mode.sh"
 
 ##### Create Segments with Brackets #####
 # Read workspace items from temp file
@@ -91,6 +100,12 @@ sketchybar --add bracket app_info chevron front_app \
            --set app_info background.color=$BACKGROUND_1 \
                          background.corner_radius=10 \
                          background.height=32
+
+# Center Segment: Aerospace Mode (when visible)
+sketchybar --add bracket aerospace_mode_bracket aerospace_mode \
+           --set aerospace_mode_bracket background.color=$RED \
+                                       background.corner_radius=10 \
+                                       background.height=32
 
 # Right Segment: System Status (battery, volume, calendar, clock)
 sketchybar --add bracket system_status battery volume calendar clock \
