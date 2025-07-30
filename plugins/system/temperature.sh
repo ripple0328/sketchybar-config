@@ -34,23 +34,23 @@ if [ "$TEMP" = "" ]; then
     fi
 fi
 
-# Set color based on temperature
+# Set color based on temperature using semantic colors
 if [ "$TEMP" != "--" ]; then
     TEMP_INT=$(echo "$TEMP" | cut -d. -f1)
     
     if [ "$TEMP_INT" -ge 80 ]; then
-        COLOR=$RED
+        COLOR=$FEEDBACK_ERROR        # Critical temperature - red
     elif [ "$TEMP_INT" -ge 70 ]; then
-        COLOR=$ORANGE
+        COLOR=$FEEDBACK_WARNING      # High temperature - orange/yellow
     elif [ "$TEMP_INT" -ge 60 ]; then
-        COLOR=$YELLOW
+        COLOR=$FEEDBACK_WARNING      # Medium-high temperature - orange/yellow
     else
-        COLOR=$GREEN
+        COLOR=$FEEDBACK_SUCCESS      # Normal temperature - green
     fi
     
     LABEL="${TEMP}°C"
 else
-    COLOR=$GREY
+    COLOR=$TEXT_TERTIARY             # No temperature data - subtle text
     LABEL="--°C"
 fi
 

@@ -113,8 +113,4 @@ export WARNING_COLOR=$FEEDBACK_WARNING     # Used by cpu, memory plugins
 export ERROR_COLOR=$FEEDBACK_ERROR         # Used by battery, cpu plugins
 export YELLOW=$FEEDBACK_WARNING            # Used by cpu plugin
 
-# Temperature script color aliases
-export RED=$FEEDBACK_ERROR                 # High temperature (critical)
-export ORANGE=$FEEDBACK_WARNING            # Medium-high temperature  
-export GREEN=$FEEDBACK_SUCCESS             # Normal temperature
-export GREY=$TEXT_TERTIARY                 # No temperature data available
+

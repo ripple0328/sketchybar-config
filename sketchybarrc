@@ -22,7 +22,20 @@ source "$ITEM_DIR/system/github.sh"
 
 # Load Segments (group items visually)
 source "$SEGMENT_DIR/left/apple_workspace.sh"
+
+# Load Spacers (create visual separation)
+source "$ITEM_DIR/spacer/spacer.sh"
+
 source "$SEGMENT_DIR/left/app_info.sh"
+
+# Add expandable spacer to push right segments to the right
+sketchybar --add item spacer left \
+           --set spacer background.drawing=off \
+                       icon.drawing=off \
+                       label.drawing=off \
+                       width=0 \
+                       script="" \
+                       updates=off
 source "$SEGMENT_DIR/center/aerospace_mode.sh"
 source "$SEGMENT_DIR/right/system_monitor.sh"
 source "$SEGMENT_DIR/right/system_status.sh"
