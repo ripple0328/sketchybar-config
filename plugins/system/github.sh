@@ -25,6 +25,10 @@ update() {
   while read -r repo url type title 
   do
     COUNTER=$((COUNTER + 1))
+    # Limit to 10 notifications
+    if [ $COUNTER -gt 10 ]; then
+      break
+    fi
     IMPORTANT="$(echo "$title" | egrep -i "(deprecat|break|broke)")"
     COLOR=$BLUE
     PADDING=0
