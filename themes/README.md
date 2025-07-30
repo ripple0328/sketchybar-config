@@ -5,7 +5,9 @@ A modern, semantic color theme system for SketchyBar with industry-standard nami
 ## 🎨 Design Philosophy
 
 ### Semantic Naming
+
 Colors are named by **purpose**, not appearance:
+
 ```bash
 # ✅ Purpose-based (clear intent)
 TEXT_PRIMARY, BACKGROUND_SECONDARY, FEEDBACK_ERROR, ACCENT_PRIMARY
@@ -15,6 +17,7 @@ WHITE, GRAY, RED, BLUE
 ```
 
 ### Theme Independence
+
 - **Same code works across all themes** - switch themes without changing configuration
 - **Automatic adaptation** - colors change based on semantic meaning
 - **Consistent behavior** - similar purposes always look similar
@@ -22,6 +25,7 @@ WHITE, GRAY, RED, BLUE
 ## 🏗️ Color Architecture
 
 ### **Surface Colors** (Backgrounds & Layers)
+
 ```bash
 BACKGROUND_PRIMARY      # Main app background
 BACKGROUND_SECONDARY    # Card/section backgrounds  
@@ -31,6 +35,7 @@ SURFACE_ELEVATED        # Raised card backgrounds
 ```
 
 ### **Content Colors** (Text & Icons)
+
 ```bash
 TEXT_PRIMARY           # Main content text
 TEXT_SECONDARY         # Supporting text
@@ -41,6 +46,7 @@ ICON_SECONDARY         # Supporting icons
 ```
 
 ### **Interactive Colors** (Actions & Controls)
+
 ```bash
 ACCENT_PRIMARY         # Primary brand actions
 ACCENT_SECONDARY       # Secondary actions
@@ -51,6 +57,7 @@ INTERACTIVE_FOCUS      # Focus outlines
 ```
 
 ### **Feedback Colors** (Status & Alerts)
+
 ```bash
 FEEDBACK_SUCCESS       # Success states (✅)
 FEEDBACK_WARNING       # Warning states (⚠️)
@@ -59,6 +66,7 @@ FEEDBACK_INFO          # Informational states (ℹ️)
 ```
 
 ### **Border Colors** (Dividers & Outlines)
+
 ```bash
 BORDER_PRIMARY         # Main borders
 BORDER_SECONDARY       # Subtle borders
@@ -77,6 +85,7 @@ BORDER_DIVIDER         # Section separators
 ## 🛠️ Using Themes
 
 ### Basic Usage
+
 ```bash
 # Switch themes instantly
 ../switch-theme tokyo-night
@@ -92,21 +101,27 @@ BORDER_DIVIDER         # Section separators
 ```
 
 ### Shell Integration
+
 Add to your `.zshrc` or `.bashrc`:
+
 ```bash
 alias theme='~/.config/sketchybar/switch-theme'
 ```
+
 Then use: `theme gruvbox`
 
 ## 🆕 Creating New Themes
 
 ### Step 1: Copy Template
+
 ```bash
 cp template.sh my-theme.sh
 ```
 
 ### Step 2: Customize Colors
+
 Edit the color values to match your desired palette:
+
 ```bash
 # Example: Ocean theme
 export BACKGROUND_PRIMARY=0xff0f1419      # Deep ocean blue
@@ -117,12 +132,15 @@ export FEEDBACK_ERROR=0xfff07178          # Coral red
 ```
 
 ### Step 3: Add to Theme Manager
+
 Edit `../theme-manager.sh` and add your theme:
+
 ```bash
 THEMES=("catppuccin" "tokyo-night" "gruvbox" "nord" "dracula" "my-theme")
 ```
 
 ### Step 4: Test Your Theme
+
 ```bash
 ../switch-theme my-theme
 ```
@@ -130,6 +148,7 @@ THEMES=("catppuccin" "tokyo-night" "gruvbox" "nord" "dracula" "my-theme")
 ## ✅ Theme Validation
 
 Validate your theme has all required colors:
+
 ```bash
 ./validate-themes.sh
 ```
@@ -141,6 +160,7 @@ This ensures your theme is complete and compatible.
 Every theme must define these semantic colors:
 
 ### Core Requirements
+
 - **Surfaces**: `BACKGROUND_PRIMARY`, `BACKGROUND_SECONDARY`, `BACKGROUND_TERTIARY`
 - **Content**: `TEXT_PRIMARY`, `TEXT_SECONDARY`, `ICON_PRIMARY`  
 - **Interactive**: `ACCENT_PRIMARY`, `INTERACTIVE_HOVER`, `INTERACTIVE_FOCUS`
@@ -148,6 +168,7 @@ Every theme must define these semantic colors:
 - **Borders**: `BORDER_PRIMARY`, `BORDER_FOCUS`
 
 ### System Integration
+
 - **Status**: `STATUS_SUCCESS`, `STATUS_WARNING`, `STATUS_ERROR`
 - **Workspaces**: `WORKSPACE_ACTIVE`, `WORKSPACE_HOVER`
 - **SketchyBar**: `TRANSPARENT`, `ICON_COLOR`, `LABEL_COLOR`
@@ -156,16 +177,19 @@ Every theme must define these semantic colors:
 ## 🎨 Design Guidelines
 
 ### Color Accessibility
+
 - Maintain **4.5:1 contrast ratio** for text
 - Test with **color blindness simulators**
 - Use **semantic names** to support accessibility tools
 
 ### Visual Consistency
+
 - Similar purposes should have **similar brightness/saturation**
 - `ACCENT_PRIMARY` should reflect **brand identity**
 - `FEEDBACK_*` colors should follow **universal conventions**
 
 ### Brand Considerations
+
 - **Primary accent** represents your brand
 - **Success/Error** colors follow standard conventions (green/red)
 - **Backgrounds** should support comfortable long-term viewing
@@ -173,21 +197,27 @@ Every theme must define these semantic colors:
 ## 🚀 Advanced Features
 
 ### Dynamic Loading
+
 Themes are loaded dynamically without restart:
+
 ```bash
 # Themes reload automatically via load-theme.sh
 source ~/.config/sketchybar/load-theme.sh
 ```
 
 ### System Integration
+
 Semantic colors automatically integrate with:
+
 - **Battery status** (charging=success, low=error)
 - **CPU monitoring** (high usage=warning, normal=success)
 - **Memory monitoring** (high usage=warning)
 - **Temperature monitoring** (high temp=error)
 
 ### Multi-State Support
+
 Colors adapt to different states:
+
 ```bash
 # Configuration stays the same
 icon.color=$STATUS_SUCCESS
@@ -201,6 +231,7 @@ icon.color=$STATUS_SUCCESS
 ## 🔄 Recent Improvements (2025)
 
 ### Performance & Maintainability Updates
+
 - **🧹 Code cleanup**: Removed 37 unused legacy variables from all themes
 - **🎨 Workspace highlighting**: Fixed `WORKSPACE_ACTIVE` color transparency for proper visual feedback
 - **📝 Font system**: Added consistent `FONT` variable support across all themes
@@ -208,12 +239,14 @@ icon.color=$STATUS_SUCCESS
 - **🛠️ Maintainability**: Simplified codebase with only actively used variables
 
 ### What Was Fixed
+
 - **Workspace Colors**: `WORKSPACE_ACTIVE` now uses semi-transparent blue (`0x998aadf4`) for proper highlighting
 - **Font Integration**: All themes now properly define `FONT="$FONT_FAMILY_PRIMARY"` for SketchyBar
 - **Variable Cleanup**: Removed unused compatibility variables while keeping essential aliases
 - **Cross-theme Consistency**: All 5 themes now have identical structure and functionality
 
 ### Removed Legacy Variables
+
 ```bash
 # These variables were removed as they were unused:
 BLACK, WHITE, RED, GREEN, BLUE, ORANGE, MAGENTA, GREY
@@ -223,6 +256,7 @@ GRADIENT_START, SHADOW_COLOR, ICON_HIGHLIGHT
 ```
 
 ### Kept Essential Variables
+
 ```bash
 # Only variables actually used by SketchyBar are kept:
 TRANSPARENT, ICON_COLOR, LABEL_COLOR, FONT
@@ -234,7 +268,8 @@ WORKSPACE_ACTIVE, WORKSPACE_INACTIVE, BORDER_FOCUS
 ## 🔧 Technical Details
 
 ### File Structure
-```
+
+```text
 themes/
 ├── README.md              # This documentation
 ├── template.sh            # Template for new themes
@@ -247,7 +282,9 @@ themes/
 ```
 
 ### Color Format
+
 All colors use ARGB hex format:
+
 ```bash
 export COLOR_NAME=0xffrrggbb
 #                   ^^ ^^ ^^
