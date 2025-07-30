@@ -45,10 +45,10 @@ defaults=(
   background.padding_left=$PADDINGS
   background.height=30
   background.corner_radius=10
-  popup.background.border_width=2
+  popup.background.border_width=0
   popup.background.corner_radius=10
   popup.background.border_color=$POPUP_BORDER_COLOR
-  popup.background.color=$POPUP_BACKGROUND_COLOR
+  popup.background.color=$BACKGROUND_1
   popup.blur_radius=20
   popup.background.shadow.drawing=on
 )
@@ -75,7 +75,9 @@ source "$ITEM_DIR/workspaces.sh"
 source "$ITEM_DIR/spacers.sh"
 source "$ITEM_DIR/app_info.sh"
 source "$ITEM_DIR/system_status.sh"
+source "$ITEM_DIR/system_monitor.sh"
 source "$ITEM_DIR/aerospace_mode.sh"
+source "$ITEM_DIR/github.sh"
 
 ##### Create Segments with Brackets #####
 # Read workspace items from temp file
@@ -107,7 +109,21 @@ sketchybar --add bracket aerospace_mode_bracket aerospace_mode \
                                        background.corner_radius=16 \
                                        background.height=32
 
-# Right Segment: System Status (battery, volume, calendar, clock)
+# Right Segment 1: System Monitoring (CPU, memory, temperature)
+sketchybar --add bracket system_monitor cpu_simple memory temperature \
+           --set system_monitor background.color=$BACKGROUND_2 \
+                               background.corner_radius=16 \
+                               background.height=32 \
+                               background.padding_right=20
+
+# Right Segment 2: GitHub Notifications
+sketchybar --add bracket github_notifications github.bell \
+           --set github_notifications background.color=$BACKGROUND_1 \
+                                     background.corner_radius=16 \
+                                     background.height=32 \
+                                     background.padding_right=20
+
+# Right Segment 3: System Status (battery, volume, calendar, clock)  
 sketchybar --add bracket system_status battery volume calendar clock \
            --set system_status background.color=$BACKGROUND_1 \
                               background.corner_radius=16 \

@@ -4,11 +4,12 @@ POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
 
 sketchybar --add       item            github.bell right                  \
            --set       github.bell     update_freq=180                    \
-                                       icon.font="$FONT:Bold:15.0"        \
                                        icon=$BELL                         \
                                        icon.color=$BLUE                   \
                                        label=$LOADING                     \
                                        label.highlight_color=$BLUE        \
+                                       background.drawing=off             \
+                                       padding_right=8                    \
                                        popup.align=right                  \
                                        script="$PLUGIN_DIR/github.sh"     \
                                        click_script="$POPUP_CLICK_SCRIPT" \

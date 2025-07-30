@@ -10,7 +10,9 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 - **Left Segment 1**: Apple logo + dynamic workspace indicators
 - **Left Segment 2**: Chevron + focused app information  
 - **Center Segment**: Aerospace mode indicator (when active)
-- **Right Segment**: System status (battery, volume, calendar, clock)
+- **Right Segment 1**: System monitoring (CPU, memory, temperature)
+- **Right Segment 2**: GitHub notifications
+- **Right Segment 3**: System status (battery, volume, calendar, clock)
 
 ### 🚀 **Aerospace Integration**
 - **Dynamic Workspaces**: Automatically detects and displays all Aerospace workspaces
@@ -20,10 +22,13 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 - **Real-time Updates**: Responds to workspace and mode changes instantly
 
 ### 📊 **System Monitoring**
+- **CPU Usage**: Real-time CPU percentage with color-coded alerts (green/yellow/orange/red)
+- **Memory Usage**: RAM usage percentage with smart color indicators
+- **Temperature**: CPU temperature monitoring with multiple detection methods
 - **Battery**: Percentage with charging status and visual indicators
 - **Volume**: Current level with click-to-adjust functionality
 - **Date & Time**: Calendar and clock with app shortcuts
-- **CPU Monitoring**: Advanced CPU usage tracking via custom C helper
+- **Advanced CPU**: Optional enhanced CPU tracking via custom C helper
 
 ### 🎨 **Visual Design**
 - **Catppuccin Color Scheme**: Modern, eye-friendly color palette
@@ -80,6 +85,7 @@ sketchybar/
 │   ├── apple.sh          # Apple logo
 │   ├── workspaces.sh     # Aerospace workspace indicators  
 │   ├── app_info.sh       # Current app display
+│   ├── system_monitor.sh # CPU, memory, temperature monitoring
 │   ├── system_status.sh  # Battery, volume, calendar, clock
 │   ├── aerospace_mode.sh # Mode indicator (resize/move/service)
 │   └── spacers.sh        # Visual spacing elements
@@ -87,6 +93,9 @@ sketchybar/
 │   ├── aerospace.sh      # Workspace management & app icons
 │   ├── aerospace_mode.sh # Mode detection & display
 │   ├── icon_map.sh       # App → icon mapping (216 apps)
+│   ├── cpu_simple.sh     # CPU usage monitoring
+│   ├── memory.sh         # Memory usage monitoring
+│   ├── temperature.sh    # Temperature monitoring
 │   ├── battery.sh        # Battery status & charging
 │   ├── volume.sh         # Volume level display
 │   ├── workspace_click.sh # Workspace switching logic
@@ -95,6 +104,47 @@ sketchybar/
     ├── helper.c          # Main program
     ├── cpu.h             # CPU monitoring functions
     └── Makefile          # Build configuration
+```
+
+## 📊 System Monitoring Details
+
+### Real-time System Metrics
+The configuration includes a dedicated system monitoring segment with live metrics:
+
+#### 🖥️ **CPU Monitoring**
+- **Update Frequency**: Every 2 seconds
+- **Data Source**: `top` command for system-wide CPU usage
+- **Color Coding**:
+  - 🟢 Green: 0-40% (normal)
+  - 🟡 Yellow: 40-60% (moderate)
+  - 🟠 Orange: 60-80% (high)
+  - 🔴 Red: 80%+ (critical)
+
+#### 💾 **Memory Monitoring**  
+- **Update Frequency**: Every 5 seconds
+- **Data Source**: `vm_stat` for precise memory statistics
+- **Color Coding**:
+  - 🔵 Blue: 0-50% (normal)
+  - 🟡 Yellow: 50-70% (moderate)
+  - 🟠 Orange: 70-85% (high)
+  - 🔴 Red: 85%+ (critical)
+
+#### 🌡️ **Temperature Monitoring**
+- **Update Frequency**: Every 5 seconds
+- **Detection Methods** (in order of preference):
+  1. `iStats` (requires: `gem install iStats`)
+  2. `smc` command (if available)
+  3. CPU-based simulation as fallback
+- **Color Coding**:
+  - 🟢 Green: <60°C (normal)
+  - 🟡 Yellow: 60-70°C (warm)
+  - 🟠 Orange: 70-80°C (hot)
+  - 🔴 Red: 80°C+ (critical)
+
+### Optional Temperature Tools
+For more accurate temperature readings, install iStats:
+```bash
+gem install iStats
 ```
 
 ## 🚀 Aerospace Integration Details
@@ -188,6 +238,9 @@ sketchybar --add item my_item right \
 |--------|---------|--------------|
 | `aerospace.sh` | Workspace management and app icons | Aerospace |
 | `aerospace_mode.sh` | Mode indicator | Aerospace |
+| `cpu_simple.sh` | CPU usage monitoring | `top` (built-in) |
+| `memory.sh` | Memory usage monitoring | `vm_stat`, `bc` (built-in) |
+| `temperature.sh` | Temperature monitoring | `istats` (optional), `smc` (optional) |
 | `battery.sh` | Battery status | `pmset` (built-in) |
 | `volume.sh` | Volume control | `osascript` (built-in) |
 | `icon_map.sh` | App icon mapping | sketchybar-app-font |
@@ -242,7 +295,27 @@ sketchybar --add item my_item right \
    aerospace mode main
    ```
 
-3. **App icons missing in workspaces**
+3. **System monitoring not showing readings**
+   ```bash
+   # Test individual plugins
+   NAME=cpu_simple ~/.config/sketchybar/plugins/cpu_simple.sh
+   NAME=memory ~/.config/sketchybar/plugins/memory.sh  
+   NAME=temperature ~/.config/sketchybar/plugins/temperature.sh
+   
+   # Check if required tools are available
+   which top vm_stat bc
+   ```
+
+4. **Temperature readings showing "--°C"**
+   ```bash
+   # Install iStats for accurate readings
+   gem install iStats
+   
+   # Or test fallback temperature calculation
+   top -l 1 -s 0 | grep "CPU usage"
+   ```
+
+5. **App icons missing in workspaces**
    ```bash
    # Check if sketchybar-app-font is installed
    ls ~/Library/Fonts/ | grep -i "sketchybar-app-font"
@@ -251,7 +324,7 @@ sketchybar --add item my_item right \
    ~/.config/sketchybar/plugins/icon_map.sh "Google Chrome"
    ```
 
-4. **Helper program CPU monitoring not working**
+6. **Helper program CPU monitoring not working**
    ```bash
    # Rebuild the helper
    cd ~/.config/sketchybar/helper
