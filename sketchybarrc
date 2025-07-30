@@ -58,15 +58,6 @@ sketchybar --default "${defaults[@]}"
 sketchybar --add event aerospace_workspace_change
 sketchybar --add event aerospace_mode_change
 
-# Add event handler for workspace changes to trigger app icon refresh
-sketchybar --add item aerospace_event_handler left \
-    --set aerospace_event_handler \
-    script="$HOME/.config/sketchybar/plugins/refresh_workspaces.sh" \
-    drawing=off \
-    --subscribe aerospace_event_handler aerospace_workspace_change
-
-
-
 ##### Load Item Files #####
 # Load all items from separate files
 source "$ITEM_DIR/apple.sh"
@@ -104,7 +95,7 @@ sketchybar --add bracket app_info chevron front_app \
 
 # Center Segment: Aerospace Mode (when visible)
 sketchybar --add bracket aerospace_mode_bracket aerospace_mode \
-           --set aerospace_mode_bracket background.color=$RED \
+           --set aerospace_mode_bracket background.color=$BLUE \
                                        background.corner_radius=16 \
                                        background.height=32
 

@@ -4,6 +4,8 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 
 > 🔗 **Related Config**: See the [Aerospace configuration](https://github.com/ripple0328/aerospace-config) for the complete window manager setup that powers this status bar.
 
+> ✨ **Recent Update**: Configuration cleaned up to remove unreferenced files. Only actively used components remain for a leaner setup.
+
 ## ✨ Current Configuration Features
 
 ### 🎯 **Segmented Design**
@@ -121,12 +123,17 @@ sketchybar/
 │   ├── temperature.sh    # Temperature monitoring
 │   ├── battery.sh        # Battery status & charging
 │   ├── volume.sh         # Volume level display
+│   ├── volume_click.sh   # Volume control interactions
+│   ├── clock.sh          # Date/time display
+│   ├── calendar.sh       # Calendar display
 │   ├── github.sh         # GitHub notifications monitoring
-│   ├── workspace_click.sh # Workspace switching logic
-│   └── *.sh              # Additional system monitors
+│   ├── front_app.sh      # Current app detection
+│   ├── front_app_click.sh # Front app click actions
+│   └── workspace_click.sh # Workspace switching logic
 └── helper/               # C program for advanced CPU monitoring
     ├── helper.c          # Main program
     ├── cpu.h             # CPU monitoring functions
+    ├── sketchybar.h      # SketchyBar integration
     └── Makefile          # Build configuration
 ```
 
@@ -376,14 +383,16 @@ sketchybar --add item my_item right \
 
 ### Testing
 
-Use included test scripts to verify Aerospace integration:
+Test individual components manually to verify functionality:
 
 ```bash
-# Test mode indicator with different Aerospace modes
-~/.config/sketchybar/test_aerospace_mode.sh
+# Test mode indicator manually
+aerospace mode service
+sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=service
 
-# Test improved mode functionality  
-~/.config/sketchybar/test_improved_mode.sh
+# Test workspace switching
+aerospace workspace 1
+sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=1
 ```
 
 ---
