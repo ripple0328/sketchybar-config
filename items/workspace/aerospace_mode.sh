@@ -14,10 +14,10 @@ sketchybar --add item aerospace_mode center \
            background.drawing=off \
            padding_left=10 \
            padding_right=10 \
-           icon.color=$BLACK \
+           icon.color=$TEXT_PRIMARY \
            icon.padding_left=0 \
            icon.padding_right=6 \
-           label.color=$BLACK \
+           label.color=$TEXT_PRIMARY \
            label.padding_left=0 \
            label.padding_right=0 \
            label.font="SF Pro:Medium:11.0" \
