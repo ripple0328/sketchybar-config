@@ -19,7 +19,7 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 ## ✨ Current Configuration Features
 
 ### 🎯 **Segmented Design**
-- **Left Segment 1**: Apple logo + dynamic workspace indicators
+- **Left Segment 1**: Apple logo with popup menu + dynamic workspace indicators
 - **Left Segment 2**: Chevron + focused app information  
 - **Center Segment**: Aerospace mode indicator (when active)
 - **Right Segment 1**: System monitoring (CPU, memory, temperature)
@@ -50,6 +50,15 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 - **Click Actions**: Click notifications to open directly in browser
 - **Notification Count**: Badge showing total unread notification count
 
+### 🍎 **Apple Menu**
+- **About This Mac**: Displays comprehensive system information using neofetch in Alacritty terminal
+- **Preferences**: Quick access to System Preferences
+- **Activity Monitor**: Launch Activity Monitor for system monitoring
+- **Lock Screen**: Instantly lock the screen
+- **Restart**: System restart with confirmation dialog
+- **Shut Down**: System shutdown with confirmation dialog
+- **Click to Toggle**: Click the Apple logo to show/hide the popup menu
+
 ### 🎨 **Visual Design**
 - **Catppuccin Color Scheme**: Modern, eye-friendly color palette
 - **Nerd Font Icons**: Rich iconography with proper app recognition
@@ -62,9 +71,12 @@ This configuration requires:
 - **SketchyBar** (`brew install FelixKratz/formulae/sketchybar`)
 - **Aerospace** (`brew install --cask nikitabobko/tap/aerospace`) 
 - **MesloLGS Nerd Font** (`brew install font-meslo-lg-nerd-font`)
+- **Alacritty** (`brew install --cask alacritty`) - for Apple menu "About This Mac" display
 - **GitHub CLI** (`brew install gh`) - for GitHub notifications
 - **jq** (`brew install jq`) - for JSON parsing in GitHub plugin
 - **sketchybar-app-font** (`brew install font-sketchybar-app-font`) - for app icons in workspaces
+- **neofetch** (`brew install neofetch`) - for Apple menu "About This Mac" system information
+  > ⚠️ **Note**: neofetch is deprecated but still functional. Homebrew may show warnings during installation.
 - **Aerospace Config** ([ripple0328/aerospace-config](https://github.com/ripple0328/aerospace-config) for complete integration)
 
 ### Optional Temperature Tools
@@ -114,7 +126,7 @@ sketchybar/
 ├── colors.sh              # Catppuccin color scheme
 ├── icons.sh               # Nerd font icon definitions
 ├── items/                 # Individual bar item configurations
-│   ├── apple.sh          # Apple logo
+│   ├── apple.sh          # Apple logo with popup menu (About, Preferences, Activity, Lock, Restart, Shutdown)
 │   ├── workspaces.sh     # Aerospace workspace indicators  
 │   ├── app_info.sh       # Current app display
 │   ├── system_monitor.sh # CPU, memory, temperature monitoring
