@@ -19,10 +19,10 @@ get_workspace_app_list() {
 get_workspace_apps() {
     local workspace_id="$1"
     local icon_strip=""
-    
+
     # Get list of apps in the workspace
     local apps=$(get_workspace_app_list "$workspace_id")
-    
+
     if [ -n "$apps" ]; then
         while IFS= read -r app; do
             if [ -n "$app" ]; then
@@ -34,7 +34,7 @@ get_workspace_apps() {
             fi
         done <<< "$apps"
     fi
-    
+
     echo "$icon_strip"
 }
 
@@ -42,18 +42,21 @@ get_workspace_apps() {
 if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
     # Get app icons for active workspace
     APP_ICONS=$(get_workspace_apps "$WORKSPACE_ID")
-    
+
     # Highlight the active workspace and show app icons
     sketchybar --set $NAME \
         background.drawing=on \
-        background.color=0x66ffffff \
-        label.color=0xff000000 \
+        background.color=0x88ffffff \
+        background.corner_radius=15 \
+        background.border_width=0 \
+        label.color=0xff007AFF \
         icon.color=0xff000000 \
         label="$APP_ICONS" \
         label.drawing=on \
-        label.padding_left=8 \
-        label.padding_right=8 \
-        label.font="sketchybar-app-font:Regular:16.0"
+        label.padding_left=6 \
+        label.padding_right=6 \
+        label.font="sketchybar-app-font:Regular:13.0" \
+        label.y_offset=3
 else
     # Dim the inactive workspace and hide app icons
     sketchybar --set $NAME \
@@ -72,31 +75,31 @@ case "$WORKSPACE_ID" in
         ;;
     "A")
         # AI workspace
-        sketchybar --set $NAME icon="A"
+        sketchybar --set $NAME icon="A 󰚩"
         ;;
     "B")
         # Browser workspace
-        sketchybar --set $NAME icon="B"
+        sketchybar --set $NAME icon="B 󰖟"
         ;;
     "C")
         # Calendar workspace
-        sketchybar --set $NAME icon="C"
+        sketchybar --set $NAME icon="C 󰃭"
         ;;
     "E")
         # Editor workspace
-        sketchybar --set $NAME icon="E"
+        sketchybar --set $NAME icon="E 󰷈"
         ;;
     "M")
         # Messages workspace
-        sketchybar --set $NAME icon="M"
+        sketchybar --set $NAME icon="M 󰍩"
         ;;
     "T")
         # Terminal workspace
-        sketchybar --set $NAME icon="T"
+        sketchybar --set $NAME icon="T 󰆍"
         ;;
     "Z")
         # Meeting workspace
-        sketchybar --set $NAME icon="Z"
+        sketchybar --set $NAME icon="Z 󰍫"
         ;;
     *)
         # Use workspace ID as icon for other workspaces

@@ -25,19 +25,17 @@ for i in "${!WORKSPACE_LIST[@]}"; do
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
         icon="$sid" \
-        icon.font="$FONT:Bold:14.0" \
+        icon.font="$FONT:Regular:13.0" \
         icon.color=0xffffffff \
-        icon.padding_left=8 \
-        icon.padding_right=8 \
+        icon.padding_left=10 \
+        icon.padding_right=10 \
         label="" \
         label.color=0xff000000 \
-        label.font="sketchybar-app-font:Regular:16.0" \
+        label.font="sketchybar-app-font:Regular:13.0" \
         label.drawing=off \
-        label.padding_left=0 \
-        label.padding_right=0 \
-        background.color=0x00000000 \
-        background.corner_radius=8 \
-        background.height=30 \
+        label.padding_left=6 \
+        label.padding_right=6 \
+        label.y_offset=3 \
         background.drawing=off \
         padding_right=$PADDING_RIGHT \
         update_freq=2 \

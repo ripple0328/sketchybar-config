@@ -21,7 +21,7 @@ bar=(
   sticky=on
   padding_right=12
   padding_left=12
-  corner_radius=10
+  corner_radius=18
   y_offset=3
   margin=0
   blur_radius=0
@@ -85,32 +85,32 @@ WORKSPACE_ITEMS=($(cat /tmp/sketchybar_workspace_items 2>/dev/null || echo ""))
 if [ ${#WORKSPACE_ITEMS[@]} -gt 0 ]; then
     sketchybar --add bracket apple_spaces apple.logo "${WORKSPACE_ITEMS[@]}" \
                --set apple_spaces background.color=$BACKGROUND_1 \
-                                 background.corner_radius=10 \
+                                 background.corner_radius=16 \
                                  background.height=32
 else
     # Fallback if no workspaces found
     sketchybar --add bracket apple_spaces apple.logo \
                --set apple_spaces background.color=$BACKGROUND_1 \
-                                 background.corner_radius=10 \
+                                 background.corner_radius=16 \
                                  background.height=32
 fi
 
 # Left Segment 2: App Info (chevron + front app)
 sketchybar --add bracket app_info chevron front_app \
            --set app_info background.color=$BACKGROUND_1 \
-                         background.corner_radius=10 \
+                         background.corner_radius=16 \
                          background.height=32
 
 # Center Segment: Aerospace Mode (when visible)
 sketchybar --add bracket aerospace_mode_bracket aerospace_mode \
            --set aerospace_mode_bracket background.color=$RED \
-                                       background.corner_radius=10 \
+                                       background.corner_radius=16 \
                                        background.height=32
 
 # Right Segment: System Status (battery, volume, calendar, clock)
 sketchybar --add bracket system_status battery volume calendar clock \
            --set system_status background.color=$BACKGROUND_1 \
-                              background.corner_radius=10 \
+                              background.corner_radius=16 \
                               background.height=32
 
 ##### Finalize #####
