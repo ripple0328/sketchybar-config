@@ -10,5 +10,4 @@ source "$HOME/.config/sketchybar/config/globals.sh"
 sketchybar --add bracket app_info chevron front_app \
            --set app_info background.color=$BACKGROUND_1 \
                          background.corner_radius=16 \
-                         background.height=32 \
-                         padding_right=$SEGMENT_SPACING
+                         background.height=32

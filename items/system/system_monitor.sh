@@ -13,7 +13,7 @@ sketchybar --add item temperature right \
                    icon="$TEMPERATURE" \
         icon.color=$WARNING_COLOR \
            background.drawing=off \
-           padding_right=12 \
+           padding_right=20 \
            script="$PLUGIN_DIR/system/temperature.sh"
 
 # Memory Usage

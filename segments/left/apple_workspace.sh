@@ -14,13 +14,11 @@ if [ ${#WORKSPACE_ITEMS[@]} -gt 0 ]; then
     sketchybar --add bracket apple_spaces apple.logo "${WORKSPACE_ITEMS[@]}" \
                --set apple_spaces background.color=$BACKGROUND_1 \
                                  background.corner_radius=16 \
-                                 background.height=32 \
-                                 padding_right=0
+                                 background.height=32
 else
     # Fallback if no workspaces found
     sketchybar --add bracket apple_spaces apple.logo \
                --set apple_spaces background.color=$BACKGROUND_1 \
                                  background.corner_radius=16 \
-                                 background.height=32 \
-                                 padding_right=0
+                                 background.height=32
 fi
