@@ -127,11 +127,15 @@ Edit `colors.sh` to modify the color scheme:
 
 ```bash
 # Catppuccin color palette
-export BLACK=0xff181926
-export WHITE=0xffcad3f5
-export RED=0xffed8796
-export GREEN=0xffa6da95
-export BLUE=0xff8aadf4
+export BLACK=0xff181926   # Black:   #181926 󰝤
+export WHITE=0xffcad3f5   # White:   #cad3f5 󰝥
+export RED=0xffed8796     # Red:     #ed8796 󰝦
+export GREEN=0xffa6da95   # Green:   #a6da95 󰝧
+export BLUE=0xff8aadf4    # Blue:    #8aadf4 󰝨
+
+# Nerd Font color sample (for use in SketchyBar):
+# 󰝤 BLACK   󰝥 WHITE   󰝦 RED   󰝧 GREEN   󰝨 BLUE
+# (These are Catppuccin palette icons from Nerd Font, e.g. U+F764–F768)
 # ... customize as needed
 ```
 
