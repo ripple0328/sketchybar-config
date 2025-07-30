@@ -118,3 +118,7 @@ sketchybar --update
 
 # Initialize aerospace mode indicator
 sketchybar --trigger aerospace_mode_change
+
+# Initialize current workspace highlighting
+CURRENT_WORKSPACE=$(aerospace list-workspaces --focused)
+sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$CURRENT_WORKSPACE

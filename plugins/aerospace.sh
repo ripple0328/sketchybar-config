@@ -12,7 +12,7 @@ CURRENT_WORKSPACE=$(aerospace list-workspaces --focused)
 # Function to get app list for a workspace
 get_workspace_app_list() {
     local workspace_id="$1"
-    aerospace list-windows --workspace "$workspace_id" 2>/dev/null | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}' | sort | uniq
+    aerospace list-windows --workspace "$workspace_id" 2>/dev/null | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); if (!seen[$2]++) print $2}'
 }
 
 # Function to get app icons for a workspace with individual app highlighting
