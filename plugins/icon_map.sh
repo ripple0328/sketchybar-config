@@ -55,13 +55,13 @@ function __icon_map() {
 
     # === AI & CHAT ===
     "ChatGPT")
-        icon_result=":chat_gpt:"
+        icon_result="󰭹"
         ;;
     "Google Gemini")
-        icon_result=":google_chrome:"
+        icon_result="✨"
         ;;
     "Google Chat")
-        icon_result=":google_chrome:"
+        icon_result="💬"
         ;;
     "Claude")
         icon_result=":claude:"

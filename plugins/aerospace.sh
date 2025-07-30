@@ -21,7 +21,7 @@ get_workspace_apps() {
     local icon_strip=""
     
     # Get currently focused app
-    local focused_app=$(aerospace list-windows --focused 2>/dev/null | awk '{print $3}')
+    local focused_app=$(aerospace list-windows --focused 2>/dev/null | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}')
 
     # Get list of apps in the workspace
     local apps=$(get_workspace_app_list "$workspace_id")
@@ -51,7 +51,7 @@ get_workspace_apps() {
 # Function to check if workspace contains the focused app
 workspace_has_focused_app() {
     local workspace_id="$1"
-    local focused_app=$(aerospace list-windows --focused 2>/dev/null | awk '{print $3}')
+    local focused_app=$(aerospace list-windows --focused 2>/dev/null | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}')
     local apps=$(get_workspace_app_list "$workspace_id")
     
     if [ -n "$focused_app" ] && [ -n "$apps" ]; then
