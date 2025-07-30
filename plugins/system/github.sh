@@ -2,14 +2,23 @@
 
 update() {
   source "$HOME/.config/sketchybar/config/globals.sh"
+  
+  # GitHub-specific color mappings using semantic theme colors
+  GITHUB_ISSUE=$FEEDBACK_SUCCESS           # Issues (green - actionable)
+  GITHUB_DISCUSSION=$TEXT_SECONDARY        # Discussions (neutral)  
+  GITHUB_PULLREQUEST=$ACCENT_PRIMARY       # Pull Requests (blue - primary action)
+  GITHUB_COMMIT=$TEXT_SECONDARY            # Commits (neutral)
+  GITHUB_IMPORTANT=$FEEDBACK_ERROR         # Important notifications (red)
+  GITHUB_BELL_DEFAULT=$ACCENT_PRIMARY      # Default bell color
+  GITHUB_BELL_ACTIVE=$FEEDBACK_WARNING     # Bell with notifications
 
   NOTIFICATIONS="$(gh api notifications)"
   COUNT="$(echo "$NOTIFICATIONS" | jq 'length')"
   args=()
   if [ "$NOTIFICATIONS" = "[]" ]; then
-    args+=(--set $NAME icon=$BELL label="0")
+    args+=(--set $NAME icon=$BELL label="0" icon.color=$GITHUB_BELL_DEFAULT)
   else
-    args+=(--set $NAME icon=$BELL_DOT label="$COUNT")
+    args+=(--set $NAME icon=$BELL_DOT label="$COUNT" icon.color=$GITHUB_BELL_ACTIVE)
   fi
 
   PREV_COUNT=$(sketchybar --query github.bell | jq -r .label.value)
@@ -19,7 +28,7 @@ update() {
   args+=(--remove '/github.notification\.*/')
 
   COUNTER=0
-  COLOR=$BLUE
+  COLOR=$GITHUB_BELL_DEFAULT
   args+=(--set github.bell icon.color=$COLOR)
 
   while read -r repo url type title 
@@ -38,18 +47,18 @@ update() {
       title="No new notifications"
     fi 
     case "${type}" in
-      "'Issue'") COLOR=$GREEN; ICON=$GIT_ISSUE; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
+      "'Issue'") COLOR=$GITHUB_ISSUE; ICON=$GIT_ISSUE; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
       ;;
-      "'Discussion'") COLOR=$WHITE; ICON=$GIT_DISCUSSION; URL="https://www.github.com/notifications"
+      "'Discussion'") COLOR=$GITHUB_DISCUSSION; ICON=$GIT_DISCUSSION; URL="https://www.github.com/notifications"
       ;;
-      "'PullRequest'") COLOR=$MAGENTA; ICON=$GIT_PULL_REQUEST; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
+      "'PullRequest'") COLOR=$GITHUB_PULLREQUEST; ICON=$GIT_PULL_REQUEST; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
       ;;
-      "'Commit'") COLOR=$WHITE; ICON=$GIT_COMMIT; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
+      "'Commit'") COLOR=$GITHUB_COMMIT; ICON=$GIT_COMMIT; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
       ;;
     esac
     
     if [ "$IMPORTANT" != "" ]; then
-      COLOR=$RED
+      COLOR=$GITHUB_IMPORTANT
       ICON=􀁞
       args+=(--set github.bell icon.color=$COLOR)
     fi
