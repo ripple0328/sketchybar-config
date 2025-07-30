@@ -16,7 +16,7 @@ sketchybar --add item chevron left \
 # Front app display (rightmost item in app_info segment)
 sketchybar --add item front_app left \
            --set front_app \
-           icon.drawing=off \
+           icon.drawing=on \
            background.drawing=off \
            padding_right=10 \
            script="$PLUGIN_DIR/utils/front_app.sh" \
