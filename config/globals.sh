@@ -11,7 +11,7 @@ export SEGMENT_DIR="$SKETCHYBAR_CONFIG/segments"
 export THEME_DIR="$SKETCHYBAR_CONFIG/themes"
 
 # Global Padding and Spacing
-export PADDINGS=8
+export PADDINGS=3
 export SEGMENT_SPACING=12
 
 # Load Theme and Icons
