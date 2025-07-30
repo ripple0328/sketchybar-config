@@ -12,13 +12,16 @@ CURRENT_WORKSPACE=$(aerospace list-workspaces --focused)
 # Function to get app list for a workspace
 get_workspace_app_list() {
     local workspace_id="$1"
-    aerospace list-windows --workspace "$workspace_id" 2>/dev/null | awk '{print $3}' | sort | uniq
+    aerospace list-windows --workspace "$workspace_id" 2>/dev/null | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}' | sort | uniq
 }
 
-# Function to get app icons for a workspace
+# Function to get app icons for a workspace with individual app highlighting
 get_workspace_apps() {
     local workspace_id="$1"
     local icon_strip=""
+    
+    # Get currently focused app
+    local focused_app=$(aerospace list-windows --focused 2>/dev/null | awk '{print $3}')
 
     # Get list of apps in the workspace
     local apps=$(get_workspace_app_list "$workspace_id")
@@ -29,7 +32,14 @@ get_workspace_apps() {
                 # Get icon for the app using icon_map.sh
                 local app_icon=$("$HOME/.config/sketchybar/plugins/icon_map.sh" "$app")
                 if [ -n "$app_icon" ]; then
-                    icon_strip+="$app_icon "
+                    # Add small dot indicator for focused app
+                    if [ "$app" = "$focused_app" ]; then
+                        # Focused app with small dot
+                        icon_strip+=" •$app_icon "
+                    else
+                        # Other apps normal
+                        icon_strip+=" $app_icon "
+                    fi
                 fi
             fi
         done <<< "$apps"
@@ -38,25 +48,57 @@ get_workspace_apps() {
     echo "$icon_strip"
 }
 
+# Function to check if workspace contains the focused app
+workspace_has_focused_app() {
+    local workspace_id="$1"
+    local focused_app=$(aerospace list-windows --focused 2>/dev/null | awk '{print $3}')
+    local apps=$(get_workspace_app_list "$workspace_id")
+    
+    if [ -n "$focused_app" ] && [ -n "$apps" ]; then
+        echo "$apps" | grep -q "^$focused_app$"
+        return $?
+    fi
+    return 1
+}
+
 # Check if this workspace is currently focused
 if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
     # Get app icons for active workspace
     APP_ICONS=$(get_workspace_apps "$WORKSPACE_ID")
-
-    # Highlight the active workspace and show app icons
-    sketchybar --set $NAME \
-        background.drawing=on \
-        background.color=0x88ffffff \
-        background.corner_radius=15 \
-        background.border_width=0 \
-        label.color=0xff007AFF \
-        icon.color=0xff000000 \
-        label="$APP_ICONS" \
-        label.drawing=on \
-        label.padding_left=6 \
-        label.padding_right=6 \
-        label.font="sketchybar-app-font:Regular:13.0" \
-        label.y_offset=3
+    
+    # Check if workspace contains focused app for enhanced highlighting
+    if workspace_has_focused_app "$WORKSPACE_ID"; then
+        # Enhanced highlight when workspace contains focused app
+        sketchybar --set $NAME \
+            background.drawing=on \
+            background.color=0x99ffffff \
+            background.corner_radius=15 \
+            background.border_width=1 \
+            background.border_color=0x66ffaa00 \
+            label.color=0xff007AFF \
+            icon.color=0xff000000 \
+            label="$APP_ICONS" \
+            label.drawing=on \
+            label.padding_left=2 \
+            label.padding_right=12 \
+            label.font="sketchybar-app-font:Regular:13.0" \
+            label.y_offset=-1
+    else
+        # Normal active workspace highlight
+        sketchybar --set $NAME \
+            background.drawing=on \
+            background.color=0x88ffffff \
+            background.corner_radius=15 \
+            background.border_width=0 \
+            label.color=0xff007AFF \
+            icon.color=0xff000000 \
+            label="$APP_ICONS" \
+            label.drawing=on \
+            label.padding_left=2 \
+            label.padding_right=12 \
+            label.font="sketchybar-app-font:Regular:13.0" \
+            label.y_offset=-1
+    fi
 else
     # Dim the inactive workspace and hide app icons
     sketchybar --set $NAME \

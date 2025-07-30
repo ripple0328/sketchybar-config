@@ -22,6 +22,7 @@ sketchybar --add item apple.logo left \
            background.drawing=off \
            label.drawing=off \
            padding_left=10 \
+           padding_right=4 \
            click_script="$POPUP_CLICK_SCRIPT"
 
 # Apple popup menu items  

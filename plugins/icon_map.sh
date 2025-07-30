@@ -57,13 +57,19 @@ function __icon_map() {
     "ChatGPT")
         icon_result=":chat_gpt:"
         ;;
+    "Google Gemini")
+        icon_result=":google_chrome:"
+        ;;
+    "Google Chat")
+        icon_result=":google_chrome:"
+        ;;
     "Claude")
         icon_result=":claude:"
         ;;
 
     # === PRODUCTIVITY & OFFICE ===
     "Fantastical" | "Calendar")
-        icon_result=":fantastical:"
+        icon_result=":calendar:"
         ;;
     "Numbers")
         icon_result=":numbers:"
