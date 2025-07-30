@@ -1,10 +1,10 @@
 # SketchyBar Configuration
 
-A modern, segmented status bar configuration for macOS with deep **Aerospace** window manager integration.
+Custom SketchyBar setup with deep **Aerospace** window manager integration and segmented design.
 
-![SketchyBar Preview](preview.png)
+> 🔗 **Related Config**: See the [Aerospace configuration](https://github.com/ripple0328/aerospace-config) for the complete window manager setup that powers this status bar.
 
-## ✨ Features
+## ✨ Current Configuration Features
 
 ### 🎯 **Segmented Design**
 - **Left Segment 1**: Apple logo + dynamic workspace indicators
@@ -31,40 +31,22 @@ A modern, segmented status bar configuration for macOS with deep **Aerospace** w
 - **Adaptive Spacing**: Smart padding and segment sizing
 - **Smooth Animations**: Polished visual feedback
 
-## 📋 Prerequisites
+## 📋 Dependencies
 
-### Required Dependencies
+This configuration requires:
+- **SketchyBar** (`brew install FelixKratz/formulae/sketchybar`)
+- **Aerospace** (`brew install --cask nikitabobko/tap/aerospace`) 
+- **MesloLGS Nerd Font** (`brew install font-meslo-lg-nerd-font`)
+- **sketchybar-app-font** (optional, for app icons in workspaces)
+- **Aerospace Config** ([ripple0328/aerospace-config](https://github.com/ripple0328/aerospace-config) for complete integration)
 
-1. **SketchyBar**
-   ```bash
-   brew install FelixKratz/formulae/sketchybar
-   ```
+## 🛠️ Setup
 
-2. **Aerospace Window Manager**
-   ```bash
-   brew install --cask nikitabobko/tap/aerospace
-   ```
-
-3. **MesloLGS Nerd Font**
-   ```bash
-   brew install font-meslo-lg-nerd-font
-   # Or download from: https://github.com/ryanoasis/nerd-fonts/releases
-   ```
-
-### Optional Dependencies
-
-4. **sketchybar-app-font** (for app icons)
-   ```bash
-   curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
-   ```
-
-## 🛠️ Installation
-
-### 1. Install SketchyBar Configuration
+### 1. Install Configuration
 
 ```bash
-# Clone or copy the configuration to your .config directory
-cp -r /path/to/sketchybar ~/.config/
+# Clone the SketchyBar configuration
+git clone https://github.com/ripple0328/sketchybar-config.git ~/.config/sketchybar
 
 # Make scripts executable
 chmod +x ~/.config/sketchybar/sketchybarrc
@@ -72,50 +54,72 @@ chmod +x ~/.config/sketchybar/plugins/*.sh
 chmod +x ~/.config/sketchybar/items/*.sh
 ```
 
-### 2. Build the Helper Program (Optional)
+### 2. Build Helper Program (Optional)
 
-The C helper provides enhanced CPU monitoring:
+Enhanced CPU monitoring via custom C helper:
 
 ```bash
 cd ~/.config/sketchybar/helper
 make
 ```
 
-### 3. Configure Aerospace Integration
-
-Add to your `~/.config/aerospace/aerospace.toml`:
-
-```toml
-# SketchyBar integration
-[mode.main.binding]
-# ... your other bindings ...
-
-[on-window-detected]
-if.app-id = 'com.apple.systempreferences'
-run = 'sketchybar --trigger aerospace_workspace_change'
-
-# Optional: Add mode change triggers
-[mode.service.binding]
-cmd = 'sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=service'
-
-[mode.resize.binding] 
-cmd = 'sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=resize'
-
-[mode.move.binding]
-cmd = 'sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=move'
-```
-
-### 4. Start SketchyBar
+### 3. Start SketchyBar
 
 ```bash
-# Start SketchyBar
 brew services start sketchybar
-
-# Or start manually
-sketchybar
 ```
 
-## ⚙️ Configuration
+## 📁 Configuration Structure
+
+```
+sketchybar/
+├── sketchybarrc           # Main configuration entry point
+├── colors.sh              # Catppuccin color scheme
+├── icons.sh               # Nerd font icon definitions
+├── items/                 # Individual bar item configurations
+│   ├── apple.sh          # Apple logo
+│   ├── workspaces.sh     # Aerospace workspace indicators  
+│   ├── app_info.sh       # Current app display
+│   ├── system_status.sh  # Battery, volume, calendar, clock
+│   ├── aerospace_mode.sh # Mode indicator (resize/move/service)
+│   └── spacers.sh        # Visual spacing elements
+├── plugins/              # Dynamic content scripts
+│   ├── aerospace.sh      # Workspace management & app icons
+│   ├── aerospace_mode.sh # Mode detection & display
+│   ├── icon_map.sh       # App → icon mapping (216 apps)
+│   ├── battery.sh        # Battery status & charging
+│   ├── volume.sh         # Volume level display
+│   ├── workspace_click.sh # Workspace switching logic
+│   └── *.sh              # Additional system monitors
+└── helper/               # C program for advanced CPU monitoring
+    ├── helper.c          # Main program
+    ├── cpu.h             # CPU monitoring functions
+    └── Makefile          # Build configuration
+```
+
+## 🚀 Aerospace Integration Details
+
+This configuration deeply integrates with the [Aerospace window manager configuration](https://github.com/ripple0328/aerospace-config), providing:
+
+### Workspace Detection & Display
+- **Auto-discovery**: Reads all workspaces from `aerospace list-workspaces --all`
+- **Current workspace**: `1, 2, 3, A, B, C, E, T, M, Z` (see Aerospace config for meanings)
+- **Visual states**: Different styling for focused vs unfocused workspaces
+- **App icons**: Shows app icons for windows in each workspace using app detection
+
+### Mode Indicators
+- **Service Mode**: Red indicator when in Aerospace service mode
+- **Resize Mode**: Visual feedback during window resizing operations  
+- **Move Mode**: Shows when moving windows between workspaces
+- **Click to exit**: Click mode indicator to return to main mode
+
+### Interactive Features
+- **Left click**: Switch to workspace (`aerospace workspace $id`)
+- **Cmd+click**: Move window to workspace and follow
+- **Option+click**: Move window to workspace but stay in current
+- **Real-time updates**: Responds to `aerospace_workspace_change` events
+
+## ⚙️ Customization
 
 ### 🎨 **Customizing Colors**
 
@@ -212,64 +216,59 @@ sketchybar --add item my_item right \
 
 ## 🔍 Troubleshooting
 
-### Common Issues
+### Configuration-Specific Issues
 
-1. **SketchyBar not starting**
+1. **Aerospace workspace not updating**
    ```bash
-   # Check if SketchyBar is installed
-   which sketchybar
-   
-   # View logs
-   tail -f /var/log/sketchybar.log
-   ```
-
-2. **Aerospace events not working**
-   ```bash
-   # Test aerospace commands
+   # Test aerospace commands work
    aerospace list-workspaces --all
    aerospace list-windows --focused
    
-   # Check if events are registered
-   sketchybar --query default
+   # Check workspace file is created
+   cat /tmp/sketchybar_workspace_items
    ```
 
-3. **Icons not displaying**
+2. **Mode indicator not showing**
    ```bash
-   # Verify font installation
-   fc-list | grep -i "meslo"
-   ls ~/Library/Fonts/ | grep -i "sketchybar-app-font"
+   # Test mode changes manually
+   aerospace mode service
+   sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=service
+   
+   # Return to main mode
+   aerospace mode main
    ```
 
-4. **Helper program not working**
+3. **App icons missing in workspaces**
+   ```bash
+   # Check if sketchybar-app-font is installed
+   ls ~/Library/Fonts/ | grep -i "sketchybar-app-font"
+   
+   # Test icon mapping
+   ~/.config/sketchybar/plugins/icon_map.sh "Google Chrome"
+   ```
+
+4. **Helper program CPU monitoring not working**
    ```bash
    # Rebuild the helper
    cd ~/.config/sketchybar/helper
    make clean && make
+   
+   # Test manually
+   ./helper cpu
    ```
 
-### Testing Scripts
+### Testing
 
-Use the included test scripts to verify functionality:
+Use included test scripts to verify Aerospace integration:
 
 ```bash
-# Test Aerospace mode indicator
+# Test mode indicator with different Aerospace modes
 ~/.config/sketchybar/test_aerospace_mode.sh
 
-# Test improved mode indicator
+# Test improved mode functionality  
 ~/.config/sketchybar/test_improved_mode.sh
 ```
 
-## 📚 Further Resources
+---
 
-- [SketchyBar Documentation](https://felixkratz.github.io/SketchyBar/)
-- [Aerospace Documentation](https://nikitabobko.github.io/AeroSpace/)
-- [Nerd Fonts](https://www.nerdfonts.com/)
-- [Catppuccin Color Palette](https://catppuccin.com/)
-
-## 🤝 Contributing
-
-Feel free to submit issues, feature requests, or improvements. This configuration is designed to be modular and easily customizable.
-
-## 📄 License
-
-This configuration is provided as-is. Feel free to modify and distribute according to your needs.
+**Related**: See the [Aerospace configuration](https://github.com/ripple0328/aerospace-config) for the complete window manager setup.
