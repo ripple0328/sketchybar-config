@@ -9,8 +9,8 @@ PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 sketchybar --add item temperature right \
            --set temperature \
            update_freq=5 \
-           icon="$TEMPERATURE" \
-           icon.color=$ORANGE \
+                   icon="$TEMPERATURE" \
+        icon.color=$WARNING_COLOR \
            background.drawing=off \
            padding_right=8 \
            script="$PLUGIN_DIR/temperature.sh"
@@ -19,8 +19,8 @@ sketchybar --add item temperature right \
 sketchybar --add item memory right \
            --set memory \
            update_freq=5 \
-           icon="$MEMORY" \
-           icon.color=$BLUE \
+                   icon="$MEMORY" \
+        icon.color=$ACCENT_COLOR \
            background.drawing=off \
            script="$PLUGIN_DIR/memory.sh"
 
@@ -28,7 +28,7 @@ sketchybar --add item memory right \
 sketchybar --add item cpu_simple right \
            --set cpu_simple \
            update_freq=2 \
-           icon="$CPU" \
-           icon.color=$GREEN \
+                   icon="$CPU" \
+        icon.color=$SUCCESS_COLOR \
            background.drawing=off \
            script="$PLUGIN_DIR/cpu_simple.sh"

@@ -3,8 +3,8 @@
 # Memory usage monitoring
 # Gets memory usage percentage
 
-# Source colors
-source "$HOME/.config/sketchybar/colors.sh"
+# Source current theme
+source "$HOME/.config/sketchybar/themes/load-theme.sh"
 
 # Get memory info using vm_stat
 VM_STAT=$(vm_stat)
@@ -29,15 +29,15 @@ else
     exit 0
 fi
 
-# Set color based on usage
+# Set color based on usage using new semantic colors
 if [ "$MEMORY_INT" -ge 85 ]; then
-  COLOR=$RED
+  COLOR=$ERROR_COLOR     # High memory usage - red
 elif [ "$MEMORY_INT" -ge 70 ]; then
-  COLOR=$ORANGE
+  COLOR=$WARNING_COLOR   # Medium-high memory usage - orange
 elif [ "$MEMORY_INT" -ge 50 ]; then
-  COLOR=$YELLOW
+  COLOR=$YELLOW          # Medium memory usage - yellow
 else
-  COLOR=$BLUE
+  COLOR=$ACCENT_COLOR    # Low memory usage - accent blue
 fi
 
 # Update the item

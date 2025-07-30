@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Load theme colors
+source "$HOME/.config/sketchybar/themes/load-theme.sh"
+
 PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
 BATTERY_INFO="$(pmset -g batt)"
@@ -38,5 +41,20 @@ else
   LABEL="${PERCENTAGE}%"
 fi
 
-# Update the item with appropriate icon and label
-sketchybar --set "$NAME" icon="$ICON" label="$LABEL"
+# Determine colors based on battery state
+if [[ "$CHARGING" != "" ]]; then
+  # Charging - use success color
+  COLOR=$SUCCESS_COLOR
+elif [ "$PERCENTAGE" != "" ] && [ "$PERCENTAGE" -le 20 ]; then
+  # Low battery - use error color
+  COLOR=$ERROR_COLOR
+elif [ "$PERCENTAGE" != "" ] && [ "$PERCENTAGE" -le 40 ]; then
+  # Medium battery - use warning color
+  COLOR=$WARNING_COLOR
+else
+  # Normal state - use default icon color
+  COLOR=$ICON_COLOR
+fi
+
+# Update the item with appropriate icon, label, and color
+sketchybar --set "$NAME" icon="$ICON" label="$LABEL" icon.color="$COLOR"

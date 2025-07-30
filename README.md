@@ -16,6 +16,32 @@ Custom SketchyBar setup with deep **Aerospace** window manager integration and s
 
 > ✨ **Recent Update**: Configuration cleaned up to remove unreferenced files. Only actively used components remain for a leaner setup.
 
+## 🎨 **Theme System**
+
+**Modern semantic color theme system with purpose-based naming**
+
+- **5 Beautiful Themes**: Catppuccin, Tokyo Night, Gruvbox, Nord, Dracula
+- **Semantic Colors**: `TEXT_PRIMARY`, `BACKGROUND_SECONDARY`, `FEEDBACK_SUCCESS`
+- **Instant Switching**: Change themes without restarting
+- **Easy Creation**: Template-based theme development
+
+```bash
+# Theme switching
+./themes/switch-theme tokyo-night    # Switch to Tokyo Night theme
+./themes/switch-theme list          # See all available themes  
+./themes/switch-theme random        # Apply random theme
+```
+
+📖 **[Complete Theme Documentation →](themes/README.md)**
+
+## 📚 **Documentation**
+
+### **Quick Reference**
+- 🎨 **[Theme System](themes/README.md)** - Complete guide to themes, creation, and customization
+- ⚙️ **[Configuration Features](#-current-configuration-features)** - Overview of all status bar components  
+- 🛠️ **[Customization](#-customization)** - How to modify colors, fonts, and add new items
+- 🔧 **[Plugin Reference](#-plugin-scripts)** - Available plugins and their dependencies
+
 ## ✨ Current Configuration Features
 
 ### 🎯 **Segmented Design**
@@ -216,24 +242,25 @@ This configuration deeply integrates with the [Aerospace window manager configur
 
 ### 🎨 **Customizing Colors**
 
-Edit `colors.sh` to modify the color scheme:
+Use the theme system for color customization:
 
 ```bash
-# Catppuccin color palette
-export BLACK=0xff181926   # Black:   #181926
-export WHITE=0xffcad3f5   # White:   #cad3f5
-export RED=0xffed8796     # Red:     #ed8796
-export GREEN=0xffa6da95   # Green:   #a6da95
-export BLUE=0xff8aadf4    # Blue:    #8aadf4
-export YELLOW=0xffeed49f  # Yellow:  #eed49f
-export ORANGE=0xfff5a97f  # Orange:  #f5a97f
-export MAGENTA=0xffc6a0f6 # Magenta: #c6a0f6
-export GREY=0xff939ab7    # Grey:    #939ab7
+# Switch to a different theme
+./themes/switch-theme tokyo-night
 
-# Background colors
-export BACKGROUND_1=0x903c3e4f  # Semi-transparent backgrounds
-export BACKGROUND_2=0x90494d64
+# Create a custom theme
+cp themes/template.sh themes/my-theme.sh
+# Edit colors in my-theme.sh, then:
+./themes/switch-theme my-theme
+
+# List all available themes
+./themes/switch-theme list
+
+# Validate all themes
+./themes/validate-themes.sh
 ```
+
+📖 **[Complete Theme Guide →](themes/README.md)**
 
 ### 🔠 **Changing Fonts**
 

@@ -3,8 +3,8 @@
 # Simple CPU usage monitoring
 # Gets overall CPU percentage using top command
 
-# Source colors
-source "$HOME/.config/sketchybar/colors.sh"
+# Source current theme
+source "$HOME/.config/sketchybar/themes/load-theme.sh"
 
 # Get CPU usage from top (1 second sample)
 CPU_USAGE=$(top -l 1 -s 0 | grep "CPU usage" | awk '{print $3}' | sed 's/%//')
@@ -16,15 +16,15 @@ fi
 # Convert to integer for comparison
 CPU_INT=$(echo "$CPU_USAGE" | cut -d. -f1)
 
-# Set color based on usage
+# Set color based on usage using new semantic colors
 if [ "$CPU_INT" -ge 80 ]; then
-  COLOR=$RED
+  COLOR=$ERROR_COLOR     # High CPU usage - red
 elif [ "$CPU_INT" -ge 60 ]; then
-  COLOR=$ORANGE
+  COLOR=$WARNING_COLOR   # Medium-high CPU usage - orange
 elif [ "$CPU_INT" -ge 40 ]; then
-  COLOR=$YELLOW
+  COLOR=$YELLOW          # Medium CPU usage - yellow
 else
-  COLOR=$GREEN
+  COLOR=$SUCCESS_COLOR   # Low CPU usage - green
 fi
 
 # Update the item

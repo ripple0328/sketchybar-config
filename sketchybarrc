@@ -3,11 +3,11 @@
 # SketchyBar configuration for Aerospace window manager
 # This configuration creates segmented bars with adaptive widths
 
-# Configuration
-FONT="MesloLGS Nerd Font"
+# Configuration  
+# Fonts are now defined in themes
 ITEM_DIR="$HOME/.config/sketchybar/items"       # Directory where the items are configured
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"   # Directory where plugin scripts are stored
-source "$HOME/.config/sketchybar/colors.sh"     # Loads all defined colors
+source "$HOME/.config/sketchybar/themes/load-theme.sh"  # Loads current theme colors
 source "$HOME/.config/sketchybar/icons.sh"      # Loads all defined icons
 PADDINGS=3
 
@@ -45,10 +45,10 @@ defaults=(
   background.height=30
   background.corner_radius=10
   popup.background.border_width=0
-  popup.background.corner_radius=10
-  popup.background.border_color=$POPUP_BORDER_COLOR
-  popup.background.color=$BACKGROUND_1
-  popup.blur_radius=20
+  popup.background.corner_radius=12
+  popup.background.color=$POPUP_BACKGROUND_COLOR
+  popup.background.shadow.color=$POPUP_SHADOW_COLOR
+  popup.blur_radius=30
   popup.background.shadow.drawing=on
 )
 
@@ -95,7 +95,7 @@ sketchybar --add bracket app_info chevron front_app \
 
 # Center Segment: Aerospace Mode (when visible)
 sketchybar --add bracket aerospace_mode_bracket aerospace_mode \
-           --set aerospace_mode_bracket background.color=$BLUE \
+           --set aerospace_mode_bracket background.color=$ACCENT_COLOR \
                                        background.corner_radius=16 \
                                        background.height=32
 

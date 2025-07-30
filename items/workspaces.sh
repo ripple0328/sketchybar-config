@@ -3,6 +3,9 @@
 # Aerospace Workspace Items with App Icon Expansion
 # This creates workspace indicators that expand to show app icons when active
 
+# Load theme colors and fonts
+source "$HOME/.config/sketchybar/themes/load-theme.sh"
+
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 # Get all workspaces from aerospace and create items for them
@@ -25,12 +28,13 @@ for i in "${!WORKSPACE_LIST[@]}"; do
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
         icon="$sid" \
-        icon.font="$FONT:Regular:13.0" \
-        icon.color=0xffffffff \
+        icon.font="MesloLGS Nerd Font:Regular:13.0" \
+        icon.color=$WORKSPACE_INACTIVE \
         icon.padding_left=10 \
         icon.padding_right=4 \
+        icon.drawing=on \
         label="" \
-        label.color=0xff000000 \
+        label.color=$TEXT_INVERSE \
         label.font="sketchybar-app-font:Regular:13.0" \
         label.drawing=off \
         label.padding_left=2 \

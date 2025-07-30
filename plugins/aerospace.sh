@@ -3,8 +3,12 @@
 # SketchyBar plugin for Aerospace workspace management
 # This script handles workspace highlighting and app icon expansion
 
+# Load theme colors
+source "$HOME/.config/sketchybar/themes/load-theme.sh"
+
 # The workspace ID is passed as the first argument
 WORKSPACE_ID="$1"
+NAME="space.$WORKSPACE_ID"
 
 # Get current focused workspace
 CURRENT_WORKSPACE=$(aerospace list-workspaces --focused)
@@ -71,12 +75,12 @@ if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
         # Enhanced highlight when workspace contains focused app
         sketchybar --set $NAME \
             background.drawing=on \
-            background.color=0x99ffffff \
+            background.color=$WORKSPACE_ACTIVE \
             background.corner_radius=15 \
             background.border_width=1 \
-            background.border_color=0x66ffaa00 \
-            label.color=0xff007AFF \
-            icon.color=0xff000000 \
+            background.border_color=$BORDER_FOCUS \
+            label.color=$ACCENT_PRIMARY \
+            icon.color=$TEXT_INVERSE \
             label="$APP_ICONS" \
             label.drawing=on \
             label.padding_left=2 \
@@ -87,11 +91,11 @@ if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
         # Normal active workspace highlight
         sketchybar --set $NAME \
             background.drawing=on \
-            background.color=0x88ffffff \
+            background.color=$WORKSPACE_HOVER \
             background.corner_radius=15 \
             background.border_width=0 \
-            label.color=0xff007AFF \
-            icon.color=0xff000000 \
+            label.color=$ACCENT_PRIMARY \
+            icon.color=$TEXT_INVERSE \
             label="$APP_ICONS" \
             label.drawing=on \
             label.padding_left=2 \
@@ -103,8 +107,8 @@ else
     # Dim the inactive workspace and hide app icons
     sketchybar --set $NAME \
         background.drawing=off \
-        label.color=0xffffffff \
-        icon.color=0xffffffff \
+        label.color=$WORKSPACE_INACTIVE \
+        icon.color=$WORKSPACE_INACTIVE \
         label="" \
         label.drawing=off
 fi

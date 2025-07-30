@@ -3,9 +3,8 @@
 # Apple Logo and Popup Menu
 # This creates the Apple logo with a popup menu
 
-FONT="MesloLGS Nerd Font"
+# Font is now defined in theme
 APPLE="󰀵"
-GREEN="0xffa6da95"
 ABOUT="󰋽"
 PREFERENCES="󰍉"
 ACTIVITY="󱣳"
@@ -20,8 +19,8 @@ POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
 sketchybar --add item apple.logo left \
            --set apple.logo \
            icon=$APPLE \
-           icon.font="$FONT:Black:16.0" \
-           icon.color=$GREEN \
+           icon.font="MesloLGS Nerd Font:Black:16.0" \
+           icon.color=$SUCCESS_COLOR \
            background.drawing=off \
            label.drawing=off \
            padding_left=10 \

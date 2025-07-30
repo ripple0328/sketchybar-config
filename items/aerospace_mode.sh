@@ -4,7 +4,7 @@
 # This creates the mode indicator that shows when not in main mode (positioned in center)
 
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
-source "$HOME/.config/sketchybar/colors.sh"
+source "$HOME/.config/sketchybar/themes/load-theme.sh"
 
 # Aerospace Mode Indicator (centered, separate segment when visible)
 sketchybar --add item aerospace_mode center \

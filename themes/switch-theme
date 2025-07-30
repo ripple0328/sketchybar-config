@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Quick Theme Switcher for SketchyBar
+# Usage: switch-theme [theme_name]
+
+THEME_MANAGER="$HOME/.config/sketchybar/themes/theme-manager.sh"
+
+if [ ! -x "$THEME_MANAGER" ]; then
+    echo "Error: Theme manager not found or not executable"
+    exit 1
+fi
+
+# If no argument provided, show usage
+if [ $# -eq 0 ]; then
+    echo "🎨 Quick Theme Switcher"
+    echo ""
+    exec "$THEME_MANAGER" list
+    echo ""
+    echo "Usage: switch-theme [theme_name|list|current|random]"
+    exit 0
+fi
+
+# Pass all arguments to theme manager
+exec "$THEME_MANAGER" "$@"

@@ -5,9 +5,9 @@ POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
 sketchybar --add       item            github.bell right                  \
            --set       github.bell     update_freq=180                    \
                                        icon=$BELL                         \
-                                       icon.color=$BLUE                   \
+                                       icon.color=$ACCENT_COLOR           \
                                        label=$LOADING                     \
-                                       label.highlight_color=$BLUE        \
+                                       label.highlight_color=$ACCENT_COLOR \
                                        background.drawing=off             \
                                        padding_right=8                    \
                                        popup.align=right                  \

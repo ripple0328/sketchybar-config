@@ -4,7 +4,7 @@
 # Attempts to get CPU temperature using available methods
 
 # Source colors
-source "$HOME/.config/sketchybar/colors.sh"
+source "$HOME/.config/sketchybar/themes/load-theme.sh"
 
 TEMP=""
 
