@@ -8,7 +8,7 @@ A modern, semantic color theme system for SketchyBar with industry-standard nami
 
 ### 🖼️ Your SketchyBar in Action
 
-![SketchyBar Example](../images/Screenshot%202025-07-30%20at%2022.49.07.png)
+![SketchyBar Example](../images/fluid-glass.png)
 
 *Above: A real SketchyBar showing workspace [1], current app "aerospace", system stats, and time display*
 

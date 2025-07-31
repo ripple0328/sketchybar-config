@@ -13,6 +13,8 @@ A SketchyBar configuration with Aerospace integration, theming support, and modu
 - **Modular Structure** - Organized separation of items, plugins, and segments
 - **Customizable** - Configuration files for modifications
 
+![Fluid Glass Theme](images/fluid-glass.png)
+
 ![Screenshot](images/Screenshot%202025-07-30%20at%2022.31.28.png)
 
 ![Screenshot](images/Screenshot%202025-07-30%20at%2022.33.00.png)
@@ -21,7 +23,7 @@ A SketchyBar configuration with Aerospace integration, theming support, and modu
 
 ![Screenshot](images/Screenshot%202025-07-30%20at%2022.40.27.png)
 
-![Screenshot](images/Screenshot%202025-07-30%20at%2022.49.07.png)
+![System Info](images/system-info.png)
 
 ## 📋 Requirements
 
