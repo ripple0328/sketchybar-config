@@ -12,7 +12,7 @@ Colors are named by **purpose**, not appearance:
 # ✅ Purpose-based (clear intent)
 TEXT_PRIMARY, BACKGROUND_SECONDARY, FEEDBACK_ERROR, ACCENT_PRIMARY
 
-# ❌ Appearance-based (unclear usage)  
+# ❌ Appearance-based (unclear usage)
 WHITE, GRAY, RED, BLUE
 ```
 
@@ -28,7 +28,7 @@ WHITE, GRAY, RED, BLUE
 
 ```bash
 BACKGROUND_PRIMARY      # Main app background
-BACKGROUND_SECONDARY    # Card/section backgrounds  
+BACKGROUND_SECONDARY    # Card/section backgrounds
 BACKGROUND_TERTIARY     # Subtle section backgrounds
 SURFACE_OVERLAY         # Modal/popup backgrounds
 SURFACE_ELEVATED        # Raised card backgrounds
@@ -159,7 +159,7 @@ Every theme must define these semantic colors:
 ### Core Requirements
 
 - **Surfaces**: `BACKGROUND_PRIMARY`, `BACKGROUND_SECONDARY`, `BACKGROUND_TERTIARY`
-- **Content**: `TEXT_PRIMARY`, `TEXT_SECONDARY`, `ICON_PRIMARY`  
+- **Content**: `TEXT_PRIMARY`, `TEXT_SECONDARY`, `ICON_PRIMARY`
 - **Interactive**: `ACCENT_PRIMARY`, `INTERACTIVE_HOVER`, `INTERACTIVE_FOCUS`
 - **Feedback**: `FEEDBACK_SUCCESS`, `FEEDBACK_WARNING`, `FEEDBACK_ERROR`
 - **Borders**: `BORDER_PRIMARY`, `BORDER_FOCUS`
@@ -287,7 +287,7 @@ All colors use ARGB hex format:
 export COLOR_NAME=0xffrrggbb
 #                   ^^ ^^ ^^
 #                   |  |  └─ Blue (00-FF)
-#                   |  └──── Green (00-FF)  
+#                   |  └──── Green (00-FF)
 #                   └─────── Red (00-FF)
 # Alpha is always FF (opaque) for solid colors
 ```

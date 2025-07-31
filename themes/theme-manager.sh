@@ -50,7 +50,11 @@ get_themes() {
 apply_theme() {
     local theme_name="$1"
     local theme_file="$THEME_DIR/$theme_name.theme.sh"
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> main
     if [ ! -f "$theme_file" ]; then
         echo "Error: Theme '$theme_name' not found!" >&2
         exit 1
@@ -58,11 +62,22 @@ apply_theme() {
 
     set_current_theme "$theme_name"
 
+<<<<<<< HEAD
     # Restart sketchybar if not in CI environment
     if [ -z "$SKETCHYBAR_CI" ]; then
         sketchybar --exit 2>/dev/null
         sleep 0.5
         sketchybar &
+=======
+# Function to preview theme colors
+preview_theme() {
+    local theme_name="$1"
+    local theme_file="$THEME_DIR/$theme_name.theme.sh"
+
+    if [ ! -f "$theme_file" ]; then
+        echo -e "${RED}Error: Theme '$theme_name' not found!${NC}"
+        exit 1
+>>>>>>> main
     fi
 }
 

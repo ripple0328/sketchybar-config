@@ -14,8 +14,19 @@ else
     # Running from repo root (CI scenario)
     THEME_DIR="$SCRIPT_DIR/themes"
 fi
+<<<<<<< HEAD
 # Get themes from the theme manager
 THEMES=($("$THEME_DIR/theme-manager.sh" list))
+=======
+# Dynamically find available themes
+THEMES=()
+for theme_file in "$THEME_DIR"/*.theme.sh; do
+    if [ -f "$theme_file" ]; then
+        theme_name=$(basename "$theme_file" .theme.sh)
+        THEMES+=("$theme_name")
+    fi
+done
+>>>>>>> main
 
 # Required core colors that all themes must have
 REQUIRED_COLORS=(
