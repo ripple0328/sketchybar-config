@@ -64,6 +64,17 @@ jobs:
             exit 1
           fi
 
+      - name: Test theme manager functionality
+        run: |
+          echo "🧪 Running theme manager tests..."
+          chmod +x tests/test-theme-manager.sh
+          if ./tests/test-theme-manager.sh; then
+            echo "✅ All theme manager tests passed!"
+          else
+            echo "❌ Theme manager tests failed!"
+            exit 1
+          fi
+
       - name: Lint Markdown files
         run: |
           echo "📝 Running markdownlint on markdown files..."
@@ -92,18 +103,6 @@ jobs:
             fi
           done < scripts.txt
 
-      - name: Test theme switching
-        run: |
-          echo "🔄 Testing theme switching functionality..."
-          if [ -f "themes/switch-theme" ]; then
-            chmod +x themes/switch-theme
-            echo "✅ Theme switcher is executable"
-          fi
-          
-          if [ -f "themes/theme-manager.sh" ]; then
-            chmod +x themes/theme-manager.sh
-            echo "✅ Theme manager is executable"
-          fi
 
       - name: Summary
         if: always()

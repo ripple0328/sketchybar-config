@@ -15,5 +15,5 @@ export PADDINGS=3
 export SEGMENT_SPACING=12
 
 # Load Theme and Icons
-source "$THEME_DIR/load-theme.sh"  # Load current theme colors
+source <( "$THEME_DIR/theme-manager.sh" load )  # Load current theme colors
 source "$SKETCHYBAR_CONFIG/icons.sh"  # Load all defined icons

@@ -5,7 +5,7 @@
 
 # Load global configuration
 source "$HOME/.config/sketchybar/config/globals.sh"
-source "$HOME/.config/sketchybar/themes/load-theme.sh"
+source <( "$HOME/.config/sketchybar/themes/theme-manager.sh" load )
 
 # Aerospace Mode Indicator (centered, separate segment when visible)
 sketchybar --add item aerospace_mode center \

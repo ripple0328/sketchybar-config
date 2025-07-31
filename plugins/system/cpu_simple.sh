@@ -4,7 +4,7 @@
 # Gets overall CPU percentage using top command
 
 # Source current theme
-source "$HOME/.config/sketchybar/themes/load-theme.sh"
+source <( "$HOME/.config/sketchybar/themes/theme-manager.sh" load )
 
 # Get CPU usage from top (1 second sample)
 CPU_USAGE=$(top -l 1 -s 0 | grep "CPU usage" | awk '{print $3}' | sed 's/%//')

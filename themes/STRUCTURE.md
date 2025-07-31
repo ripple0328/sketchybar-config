@@ -44,13 +44,13 @@ themes/
 
 ```bash
 # Direct theme commands (clean and simple)
-./themes/switch-theme tokyo-night
-./themes/switch-theme list
-./themes/switch-theme random
+./themes/theme-manager.sh tokyo-night
+./themes/theme-manager.sh list
+./themes/theme-manager.sh random
 
 # From themes directory  
 cd themes/
-./switch-theme gruvbox
+./theme-manager.sh gruvbox
 ./validate-themes.sh
 ./theme-manager.sh preview nord
 ```
@@ -65,13 +65,13 @@ cd themes/
 
 ### **Theme System Files Updated**  
 
-- ✅ `themes/switch-theme` → `themes/theme-manager.sh`
+- ✅ `themes/theme-manager.sh` is the single source of truth
 - ✅ `themes/load-theme.sh` → `themes/.current-theme`
 - ✅ `themes/theme-manager.sh` → `themes/.current-theme`
 
 ### **Direct Access**
 
-- ✅ Direct usage: `./themes/switch-theme` (clean and simple)
+- ✅ Direct usage: `./themes/theme-manager.sh` (clean and simple)
 
 ## 🎉 **Benefits Achieved**
 
@@ -83,7 +83,7 @@ cd themes/
 
 ### **🔗 Simple and Direct**
 
-- **Clear command structure** - `./themes/switch-theme`
+- **Clear command structure** - `./themes/theme-manager.sh`
 - **No wrapper complexity** - direct access to theme system
 - **Intuitive organization** - themes live in themes/
 

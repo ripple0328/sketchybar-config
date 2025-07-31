@@ -4,7 +4,7 @@
 # Gets memory usage percentage
 
 # Source current theme
-source "$HOME/.config/sketchybar/themes/load-theme.sh"
+source <( "$HOME/.config/sketchybar/themes/theme-manager.sh" load )
 
 # Get memory info using vm_stat
 VM_STAT=$(vm_stat)
