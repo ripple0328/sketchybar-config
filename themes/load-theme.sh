@@ -16,14 +16,14 @@ else
 fi
 
 # Load the current theme directly
-THEME_FILE="$THEME_DIR/$CURRENT_THEME.sh"
+THEME_FILE="$THEME_DIR/$CURRENT_THEME.theme.sh"
 
 if [ -f "$THEME_FILE" ]; then
     source "$THEME_FILE"
 else
     # Fallback to catppuccin if theme file doesn't exist
     echo "Warning: Theme '$CURRENT_THEME' not found, falling back to catppuccin" >&2
-    source "$THEME_DIR/catppuccin.sh"
+    source "$THEME_DIR/catppuccin.theme.sh"
     echo "catppuccin" > "$CURRENT_THEME_FILE"
 fi
 

@@ -7,8 +7,14 @@ THEME_DIR="$HOME/.config/sketchybar/themes"
 CONFIG_DIR="$HOME/.config/sketchybar"
 CURRENT_THEME_FILE="$THEME_DIR/.current-theme"
 
-# Available themes
-THEMES=("catppuccin" "tokyo-night" "gruvbox" "nord" "dracula")
+# Dynamically find available themes
+THEMES=()
+for theme_file in "$THEME_DIR"/*.theme.sh; do
+    if [ -f "$theme_file" ]; then
+        theme_name=$(basename "$theme_file" .theme.sh)
+        THEMES+=("$theme_name")
+    fi
+done
 
 # Colors for output
 RED='\033[0;31m'
@@ -52,7 +58,7 @@ set_current_theme() {
 # Function to apply theme
 apply_theme() {
     local theme_name="$1"
-    local theme_file="$THEME_DIR/$theme_name.sh"
+    local theme_file="$THEME_DIR/$theme_name.theme.sh"
     
     if [ ! -f "$theme_file" ]; then
         echo -e "${RED}Error: Theme '$theme_name' not found!${NC}"
@@ -79,7 +85,7 @@ apply_theme() {
 # Function to preview theme colors
 preview_theme() {
     local theme_name="$1"
-    local theme_file="$THEME_DIR/$theme_name.sh"
+    local theme_file="$THEME_DIR/$theme_name.theme.sh"
     
     if [ ! -f "$theme_file" ]; then
         echo -e "${RED}Error: Theme '$theme_name' not found!${NC}"

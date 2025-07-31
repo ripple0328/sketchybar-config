@@ -112,15 +112,19 @@ Then use: `theme gruvbox`
 
 ## 🆕 Creating New Themes
 
+Creating a new theme is simple and requires no manual script editing. The theme manager will automatically discover any valid theme file.
+
 ### Step 1: Copy Template
 
+All theme files must follow the `<name>.theme.sh` naming convention.
+
 ```bash
-cp template.sh my-theme.sh
+cp template.sh my-awesome-theme.theme.sh
 ```
 
 ### Step 2: Customize Colors
 
-Edit the color values to match your desired palette:
+Edit your new `my-awesome-theme.theme.sh` file and change the color values to match your desired palette:
 
 ```bash
 # Example: Ocean theme
@@ -131,19 +135,15 @@ export FEEDBACK_SUCCESS=0xff7fd962        # Sea green
 export FEEDBACK_ERROR=0xfff07178          # Coral red
 ```
 
-### Step 3: Add to Theme Manager
+### Step 3: Apply Your Theme
 
-Edit `../theme-manager.sh` and add your theme:
-
-```bash
-THEMES=("catppuccin" "tokyo-night" "gruvbox" "nord" "dracula" "my-theme")
-```
-
-### Step 4: Test Your Theme
+Your theme is now instantly available. Apply it using the `switch-theme` command:
 
 ```bash
-../switch-theme my-theme
+../switch-theme my-awesome-theme
 ```
+
+The theme manager automatically lists, validates, and manages your new theme.
 
 ## ✅ Theme Validation
 
@@ -271,14 +271,14 @@ WORKSPACE_ACTIVE, WORKSPACE_INACTIVE, BORDER_FOCUS
 
 ```text
 themes/
-├── README.md              # This documentation
-├── template.sh            # Template for new themes
-├── catppuccin.sh          # Catppuccin theme
-├── tokyo-night.sh         # Tokyo Night theme
-├── gruvbox.sh             # Gruvbox theme
-├── nord.sh                # Nord theme
-├── dracula.sh             # Dracula theme
-└── validate-themes.sh     # Validation script
+├── README.md                 # This documentation
+├── template.sh               # Template for new themes
+├── catppuccin.theme.sh       # Catppuccin theme
+├── tokyo-night.theme.sh      # Tokyo Night theme
+├── gruvbox.theme.sh          # Gruvbox theme
+├── nord.theme.sh             # Nord theme
+├── dracula.theme.sh          # Dracula theme
+└── validate-themes.sh        # Validation script
 ```
 
 ### Color Format
