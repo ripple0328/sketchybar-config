@@ -2,6 +2,99 @@
 
 This document provides comprehensive guidelines for contributors and developers working with this SketchyBar configuration.
 
+## 📁 Project Structure
+
+### File Organization
+
+```text
+sketchybar/
+├── sketchybarrc                      # Main config - orchestrates loading
+├── README.md                         # User documentation
+├── CONTRIBUTING.md                   # This developer guide
+├── MIGRATION.md                      # Migration guide from old structure
+├── icons.sh                          # Icon definitions
+├── config/                           # Core configuration
+│   ├── globals.sh                   # Global variables and paths
+│   ├── bar.sh                       # Bar appearance settings
+│   ├── defaults.sh                  # Default item settings
+│   └── events.sh                    # Event definitions
+├── segments/                         # Visual grouping (brackets)
+│   ├── left/
+│   │   ├── apple_workspace.sh       # Apple logo + workspace segment
+│   │   └── app_info.sh              # App information segment
+│   ├── center/
+│   │   └── aerospace_mode.sh        # Aerospace mode indicator
+│   └── right/
+│       ├── system_monitor.sh        # CPU, memory, temperature
+│       └── system_status.sh         # Battery, volume, clock
+├── items/                            # Item definitions
+│   ├── app/
+│   │   ├── apple.sh                 # Apple menu with popup
+│   │   └── app_info.sh              # Current app display
+│   ├── system/
+│   │   ├── github.sh                # GitHub notifications
+│   │   ├── system_monitor.sh        # System monitoring items
+│   │   └── system_status.sh         # System status items
+│   └── workspace/
+│       ├── aerospace_mode.sh        # Aerospace mode indicator
+│       └── workspaces.sh            # Dynamic workspace items
+├── plugins/                          # Dynamic content scripts
+│   ├── system/
+│   │   ├── battery.sh               # Battery status updates
+│   │   ├── calendar.sh              # Calendar display
+│   │   ├── clock.sh                 # Time display
+│   │   ├── cpu_simple.sh            # CPU usage monitoring
+│   │   ├── github.sh                # GitHub API integration
+│   │   ├── memory.sh                # Memory usage monitoring
+│   │   ├── temperature.sh           # Temperature monitoring
+│   │   ├── volume.sh                # Volume level display
+│   │   └── volume_click.sh          # Volume click handler
+│   ├── workspace/
+│   │   ├── aerospace.sh             # Workspace state management
+│   │   └── aerospace_mode.sh        # Mode change handling
+│   └── utils/
+│       ├── front_app.sh             # Current app detection
+│       ├── front_app_click.sh       # App click handler
+│       ├── icon_map.sh              # App icon mapping
+│       └── workspace_click.sh       # Workspace click handler
+├── themes/                           # Theme definitions
+│   ├── catppuccin.theme.sh          # Catppuccin theme
+│   ├── dracula.theme.sh             # Dracula theme
+│   ├── tokyo-night.theme.sh         # Tokyo Night theme
+│   ├── nord.theme.sh                # Nord theme
+│   ├── gruvbox.theme.sh             # Gruvbox theme
+│   ├── theme-manager.sh             # Theme management
+│   └── validate-themes.sh           # Theme validation
+└── images/                           # Screenshots and documentation images
+```
+
+### Component Distinction
+
+**Items** (`items/` directory):
+- Define **what** appears on the bar (sketchybar items)
+- Configure appearance, position, and static properties
+- Set up click handlers and subscriptions
+- Should contain `sketchybar --add item` and `sketchybar --set` commands
+
+**Plugins** (`plugins/` directory):
+- Define **how** content is generated/updated (executable scripts)
+- Handle dynamic content updates and data processing
+- Receive events and update item properties
+- Should contain logic that outputs content via `sketchybar --set $NAME`
+
+**Segments** (`segments/` directory):
+- Group related items into visual segments (brackets)
+- Define the visual grouping and layout of items
+- Handle bracket creation and styling
+- Keep segment definitions separate from item definitions
+
+### Dependencies and Loading Order
+
+1. **Core Config**: Load global variables, themes, icons first
+2. **Items**: Define all bar items and their basic properties
+3. **Segments**: Group items into visual segments (brackets)
+4. **Finalization**: Update and initialize the bar
+
 ## 🏗️ Architecture Principles
 
 ### Core Design Philosophy
@@ -39,12 +132,19 @@ Files are grouped by functionality, not file type:
 - **App**: Application-related items and functionality
 - **Utils**: Shared utilities and helper scripts
 
-### 4. **Consistent Naming**
+### Naming Conventions
 
-- **Items**: `category/function.sh` (e.g., `system/battery.sh`)
-- **Plugins**: `category/function_action.sh` (e.g., `system/battery_update.sh`) or `category/function.sh`
-- **Segments**: `position/description.sh` (e.g., `right/system_status.sh`)
-- **Config**: `purpose.sh` (e.g., `globals.sh`, `defaults.sh`)
+- **Items**: Use descriptive names indicating what they display
+  - `items/system/battery.sh` - Battery status item definition
+  - `items/workspace/workspaces.sh` - Workspace items definition
+  
+- **Plugins**: Use descriptive names indicating what they do
+  - `plugins/system/battery.sh` - Updates battery display content
+  - `plugins/workspace/aerospace.sh` - Updates workspace state
+
+- **Segments**: Use location-based names describing the grouping
+  - `segments/left/apple_workspace.sh` - Left segment with Apple logo and workspaces
+  - `segments/right/system_status.sh` - Right segment with system status
 
 ## 🛠️ Development Guidelines
 
@@ -181,6 +281,64 @@ plugins/system/battery.sh        # Updates battery content
 - Plugin paths are centralized in globals
 - Theme and icon loading is centralized
 - Each component can be modified independently
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**SketchyBar not starting:**
+
+```bash
+# Check if SketchyBar is running
+pgrep sketchybar
+
+# Kill and restart
+killall sketchybar
+brew services restart sketchybar
+```
+
+**Missing icons:**
+
+- Install a Nerd Font (MesloLGS recommended)
+- Update font references in theme files
+
+**Aerospace integration not working:**
+
+- Ensure Aerospace is installed and configured
+- Check that workspace scripts have execute permissions
+
+**Theme not loading:**
+
+- Verify theme file exists in `themes/` directory
+- Check theme-manager.sh output for errors
+- Ensure theme file has proper variable exports
+
+### Debug Mode
+
+```bash
+# Enable verbose logging
+sketchybar --reload --verbose
+
+# Check individual component
+~/.config/sketchybar/plugins/system/battery.sh
+
+# Test theme loading
+~/.config/sketchybar/themes/theme-manager.sh load
+```
+
+### Component Testing
+
+```bash
+# Test individual plugins
+chmod +x ~/.config/sketchybar/plugins/system/battery.sh
+~/.config/sketchybar/plugins/system/battery.sh
+
+# Check plugin permissions
+find ~/.config/sketchybar/plugins -name "*.sh" -not -executable
+
+# Validate themes
+~/.config/sketchybar/themes/validate-themes.sh
+```
 
 ---
 
