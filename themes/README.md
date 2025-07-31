@@ -17,32 +17,29 @@ A modern, semantic color theme system for SketchyBar with industry-standard nami
 Here's what each element in the screenshot above does and what color variable controls it:
 
 ```text
-┌─ BACKGROUND_PRIMARY (the bar itself) ─────────────────────────────────┐
-│                                                                       │
-│  🍎     [1] [2] [3]     📁 VS Code          📊 85%  🔔 0   🔋 100%  22:37 │
-│  ↑         ↑   ↑           ↑                ↑      ↑       ↑       ↑    │
-│  │      active │      current app         system  bell   battery  time │
-│  │     workspace │                        stats          status        │
-│  │               inactive                                               │
-│  │               workspaces                                             │
-│                                                                         │
-└─────────────────────────────────────────────────────────────────────────┘
+┌─ BACKGROUND_PRIMARY ───────────────────────────────────────────────────────────┐
+│                                                                                │
+│  🍎① [1]② [2]③ [3]④  📁 VS Code⑤  📊⑥ 85%⑦  🔔⑧  🔋⑨ 100%⑩  22:37⑪ │
+└────────────────────────────────────────────────────────────────────────────────┘
 ```
+
+Numbers ①–⑪ correspond to the color variables below.
 
 ### 🎯 Color Variable Mapping
 
-| What You See | Color Variable | Impact Level | Description |
-|---|---|:---:|---|
-| 🍎 **Apple Logo** | `ICON_PRIMARY` | 🔥 HIGH | The colorful Apple menu icon |
-| **[1]** Active Workspace | `WORKSPACE_ACTIVE` | 🔥 HIGH | Blue highlight around current workspace |
-| **[2] [3]** Inactive Workspaces | `TEXT_SECONDARY` | 🟡 MEDIUM | Dimmed workspace numbers |
-| **📁 VS Code** App Name | `TEXT_PRIMARY` | 🔥 HIGH | Current application name (white text) |
-| **📊 85%** System Stats | `ACCENT_PRIMARY` | 🔥 HIGH | CPU, memory, temperature icons |
-| **85%** Numbers/Values | `TEXT_PRIMARY` | 🔥 HIGH | All percentage and numeric displays |
-| **🔔 0** GitHub Bell | `STATE_WARNING` | 🟡 MEDIUM | Notification bell (orange when active) |
-| **🔋 100%** Battery | `ICON_PRIMARY` | 🔥 HIGH | Battery icon and percentage |
-| **22:37** Time | `TEXT_PRIMARY` | 🔥 HIGH | Clock display |
-| **Bar Background** | `BACKGROUND_PRIMARY` | 🔥 HIGH | The entire bar's background color |
+| # | What You See | Color Variable | Impact Level | Description |
+|:-:|---|---|:---:|---|
+| ① | 🍎 **Apple Logo** | `ICON_PRIMARY` | 🔥 HIGH | The colorful Apple menu icon |
+| ② | **[1]** Active Workspace | `WORKSPACE_ACTIVE` | 🔥 HIGH | Blue highlight around current workspace |
+| ③④ | **[2] [3]** Inactive Workspaces | `TEXT_SECONDARY` | 🟡 MEDIUM | Dimmed workspace numbers |
+| ⑤ | **📁 VS Code** App Name | `TEXT_PRIMARY` | 🔥 HIGH | Current application name (white text) |
+| ⑥ | **📊** System Stats Icon | `ACCENT_PRIMARY` | 🔥 HIGH | CPU, memory, temperature icons |
+| ⑦ | **85%** Numbers/Values | `TEXT_PRIMARY` | 🔥 HIGH | All percentage and numeric displays |
+| ⑧ | **🔔 0** GitHub Bell | `STATE_WARNING` | 🟡 MEDIUM | Notification bell (orange when active) |
+| ⑨ | **🔋** Battery Icon | `ICON_PRIMARY` | 🔥 HIGH | Battery icon |
+| ⑩ | **100%** Battery Value | `TEXT_PRIMARY` | 🔥 HIGH | Battery percentage |
+| ⑪ | **22:37** Time | `TEXT_PRIMARY` | 🔥 HIGH | Clock display |
+| — | **Bar Background** | `BACKGROUND_PRIMARY` | 🔥 HIGH | The entire bar's background color |
 
 ### 🚀 Theme Creation Walkthrough
 
