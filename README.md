@@ -7,7 +7,7 @@ A SketchyBar configuration with Aerospace integration, theming support, and modu
 ## ✨ Features
 
 - **Aerospace Integration** - Workspace indicators with app icons
-- **Multiple Themes** - Catppuccin, Dracula, Tokyo Night, Nord, and more
+- **Multiple Themes** - Catppuccin, Dracula, Tokyo Night, Nord, Fluid Glass, and more
 - **System Monitoring** - CPU, memory, temperature, battery status
 - **GitHub Notifications** - Notification counts when authenticated
 - **Modular Structure** - Organized separation of items, plugins, and segments

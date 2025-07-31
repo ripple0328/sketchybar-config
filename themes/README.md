@@ -223,6 +223,7 @@ BORDER_DIVIDER         # Section separators
 - **🍂 Gruvbox** - Warm retro color scheme with earth tones
 - **❄️ Nord** - Arctic, minimalist blue palette
 - **🧛 Dracula** - Dark theme with vibrant purple accents
+- **💧 Fluid Glass** - Translucent frosted-glass theme
 
 ## 🛠️ Using Themes
 
