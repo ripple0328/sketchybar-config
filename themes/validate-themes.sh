@@ -14,7 +14,14 @@ else
     # Running from repo root (CI scenario)
     THEME_DIR="$SCRIPT_DIR/themes"
 fi
-THEMES=("catppuccin" "tokyo-night" "gruvbox" "nord" "dracula")
+# Dynamically find available themes
+THEMES=()
+for theme_file in "$THEME_DIR"/*.theme.sh; do
+    if [ -f "$theme_file" ]; then
+        theme_name=$(basename "$theme_file" .theme.sh)
+        THEMES+=("$theme_name")
+    fi
+done
 
 # Required core colors that all themes must have
 REQUIRED_COLORS=(
@@ -94,7 +101,7 @@ for theme in "${THEMES[@]}"; do
     echo ""
     echo -e "${TERM_BLUE}Checking theme: ${TERM_YELLOW}$theme${NC}"
     
-    theme_file="$THEME_DIR/$theme.sh"
+    theme_file="$THEME_DIR/$theme.theme.sh"
     
     if [ ! -f "$theme_file" ]; then
         echo -e "  ${TERM_RED}❌ Theme file not found: $theme_file${NC}"
