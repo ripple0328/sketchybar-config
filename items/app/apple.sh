@@ -30,13 +30,13 @@ sketchybar --add item apple.logo left \
                                   mouse.exited \
                                   mouse.exited.global
 
-# Apple popup menu items  
+# Apple popup menu items
 sketchybar --add item apple.about popup.apple.logo \
            --set apple.about \
            icon=$ABOUT \
            label="About" \
            padding_right=12 \
-           click_script="alacritty --title 'About This Mac' -e sh -c 'neofetch; echo; echo \"Press any key to close...\"; read -n 1'; $POPUP_OFF"
+           click_script="alacritty --title 'About This Mac' -e sh -c 'fastfetch; echo; echo \"Press any key to close...\"; read -n 1'; $POPUP_OFF"
 
 sketchybar --add item apple.prefs popup.apple.logo \
            --set apple.prefs \
@@ -71,4 +71,4 @@ sketchybar --add item apple.shutdown popup.apple.logo \
            icon=$SHUTDOWN \
            label="Shut Down" \
            padding_right=12 \
-           click_script="osascript -e 'tell app \"System Events\" to shut down'; $POPUP_OFF" 
+           click_script="osascript -e 'tell app \"System Events\" to shut down'; $POPUP_OFF"
