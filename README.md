@@ -2,25 +2,26 @@
 
 # SketchyBar Configuration
 
-A professional, well-organized SketchyBar configuration with full Aerospace integration, dynamic theming, and modular architecture designed for maintainability and extensibility.
+A SketchyBar configuration with Aerospace integration, theming support, and modular organization.
 
 ## ✨ Features
 
-- 🚀 **Full Aerospace Integration** - Dynamic workspace indicators with app icons
-- 🎨 **Multiple Themes** - Catppuccin, Dracula, Tokyo Night, Nord, and more
-- 📊 **System Monitoring** - CPU, memory, temperature, battery status
-- 🔔 **GitHub Notifications** - Real-time notification counts
-- 🎯 **Modular Architecture** - Clean separation of items, plugins, and segments
-- ⚡ **Fast Performance** - Optimized scripts and minimal resource usage
-- 🔧 **Easy Customization** - Well-documented structure for modifications
+- **Aerospace Integration** - Workspace indicators with app icons
+- **Multiple Themes** - Catppuccin, Dracula, Tokyo Night, Nord, and more
+- **System Monitoring** - CPU, memory, temperature, battery status
+- **GitHub Notifications** - Notification counts when authenticated
+- **Modular Structure** - Organized separation of items, plugins, and segments
+- **Customizable** - Configuration files for modifications
 
-![Screenshot](images/Screenshot%202025-07-30%20at%2004.34.47.png)
+![Screenshot](images/Screenshot%202025-07-30%20at%2022.31.28.png)
 
-![Screenshot](images/Screenshot%202025-07-30%20at%2004.36.11.png)
+![Screenshot](images/Screenshot%202025-07-30%20at%2022.33.00.png)
 
-![Screenshot](images/Screenshot%202025-07-30%20at%2004.37.04.png)
+![Screenshot](images/Screenshot%202025-07-30%20at%2022.37.37.png)
 
-![Screenshot](images/Screenshot%202025-07-30%20at%2004.37.21.png)
+![Screenshot](images/Screenshot%202025-07-30%20at%2022.40.27.png)
+
+![Screenshot](images/Screenshot%202025-07-30%20at%2022.49.07.png)
 
 ## 📋 Requirements
 
@@ -87,7 +88,7 @@ A professional, well-organized SketchyBar configuration with full Aerospace inte
 ```text
 sketchybar/
 ├── sketchybarrc                      # Main config - orchestrates loading
-├── README.md                         # This documentation  
+├── README.md                         # This documentation
 ├── MIGRATION.md                      # Migration guide from old structure
 ├── PRINCIPLES.md                     # Design principles and philosophy
 ├── icons.sh                          # Icon definitions
@@ -152,7 +153,7 @@ sketchybar/
 - **Items**: Use descriptive names indicating what they display
   - `items/system/battery.sh` - Battery status item definition
   - `items/workspace/workspaces.sh` - Workspace items definition
-  
+
 - **Plugins**: Use descriptive names indicating what they do
   - `plugins/system/battery.sh` - Updates battery display content
   - `plugins/workspace/aerospace.sh` - Updates workspace state
@@ -182,7 +183,7 @@ sketchybar/
 **Adding a new item:**
 
 1. Create item definition in appropriate `items/` subdirectory
-2. Create plugin script in appropriate `plugins/` subdirectory  
+2. Create plugin script in appropriate `plugins/` subdirectory
 3. Add item to relevant segment file
 4. Update main config to load the new files
 
@@ -199,41 +200,11 @@ sketchybar/
 
 ## 🎨 Themes
 
-This configuration includes multiple professionally crafted themes:
-
-- **Catppuccin** - Soothing pastel theme
-- **Dracula** - Dark theme with vibrant colors  
-- **Tokyo Night** - Dark, modern theme
-- **Nord** - Arctic-inspired color palette
-- **Gruvbox** - Retro groove colors
-
-Switch themes easily:
-
-```bash
-# Set theme (theme name from themes/ directory)
-echo "catppuccin" > ~/.config/sketchybar/themes/current-theme.txt
-sketchybar --reload
-```
+Multiple themes available with semantic color system. See [themes/README.md](themes/README.md) for complete documentation and usage.
 
 ## 🔧 Customization
 
-### Adding a New Item
-
-1. Create item definition: `items/category/item_name.sh`
-2. Create plugin script: `plugins/category/item_name.sh`
-3. Add to relevant segment: `segments/position/segment_name.sh`
-4. Load in main config: `sketchybarrc`
-
-### Creating a New Theme
-
-1. Copy `themes/template.sh` to `themes/your_theme.sh`
-2. Modify colors to match your design
-3. Set as current theme
-
-### Modifying Segments
-
-- Edit segment files in `segments/` to change visual grouping
-- Segments control bracket styling and item grouping
+For detailed customization and development guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 🐛 Troubleshooting
 
@@ -278,28 +249,19 @@ sketchybar --reload --verbose
 
 ## 📚 Additional Documentation
 
-- **[PRINCIPLES.md](PRINCIPLES.md)** - Design philosophy and architectural decisions
-- **[MIGRATION.md](MIGRATION.md)** - Guide for migrating from old configuration structure
-- **[Themes README](themes/README.md)** - Detailed theming documentation
-
-## 🤝 Contributing
-
-1. Follow the established directory structure
-2. Update documentation for any changes
-3. Test with multiple themes
-4. Ensure shell scripts pass shellcheck
-5. Use descriptive commit messages
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Developer guidelines and architecture principles
+- **[themes/README.md](themes/README.md)** - Comprehensive theming system documentation
 
 ## Current Implementation
 
-This professionally refactored configuration provides:
+This configuration provides:
 
-- ✅ Clear separation of concerns between items, plugins, and segments
-- ✅ Modular architecture for easy maintenance and extension
-- ✅ Comprehensive theming system with multiple built-in themes
-- ✅ Full Aerospace window manager integration
-- ✅ System monitoring with visual indicators
-- ✅ GitHub integration for development workflows
-- ✅ Self-documenting code structure
-- ✅ CI/CD pipeline for code quality assurance
-- ✅ Easy customization and modification workflows
+- Clear separation of concerns between items, plugins, and segments
+- Modular architecture for maintenance and extension
+- Theming system with multiple built-in themes
+- Aerospace window manager integration
+- System monitoring with visual indicators
+- GitHub integration for development workflows
+- Organized code structure
+- CI/CD pipeline for code quality
+- Customization and modification support
