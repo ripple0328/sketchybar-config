@@ -16,7 +16,7 @@ A modern, semantic color theme system for SketchyBar with industry-standard nami
 
 Here's what each element in the screenshot above does and what color variable controls it:
 
-```
+```text
 ┌─ BACKGROUND_PRIMARY (the bar itself) ─────────────────────────────────┐
 │                                                                       │
 │  🍎     [1] [2] [3]     📁 VS Code          📊 85%  🔔 0   🔋 100%  22:37 │
@@ -50,26 +50,31 @@ Here's what each element in the screenshot above does and what color variable co
 These have the most visual impact:
 
 1. **`BACKGROUND_PRIMARY`** → Change the entire bar color
+
    ```bash
    export BACKGROUND_PRIMARY=0xff1a1b26  # Dark blue background
    ```
 
 2. **`TEXT_PRIMARY`** → Change all main text (VS Code, 100%, 22:37)
+
    ```bash
    export TEXT_PRIMARY=0xfff7768e        # Pink text
    ```
 
 3. **`ICON_PRIMARY`** → Change Apple logo, battery, app icons
+
    ```bash
    export ICON_PRIMARY=0xff9ece6a        # Green icons
    ```
 
 4. **`WORKSPACE_ACTIVE`** → Change active workspace highlight
+
    ```bash
    export WORKSPACE_ACTIVE=0xff7aa2f7    # Blue highlight
    ```
 
 **Step 2: Test your changes** 🧪
+
 ```bash
 # Save your theme file
 # Then reload SketchyBar
@@ -84,11 +89,11 @@ sketchybar --reload
 
 **Step 3: Fine-tune with secondary colors** ✨
 
-5. **`ACCENT_PRIMARY`** → System monitor icons (📊 🌡️)
-6. **`TEXT_SECONDARY`** → Inactive workspace numbers [2] [3]
-7. **`STATE_WARNING`** → GitHub notification bell
-8. **`STATE_SUCCESS`** → Success indicators (green states)
-9. **`STATE_ERROR`** → Error indicators (red alerts)
+1. **`ACCENT_PRIMARY`** → System monitor icons (📊 🌡️)
+2. **`TEXT_SECONDARY`** → Inactive workspace numbers [2] [3]
+3. **`STATE_WARNING`** → GitHub notification bell
+4. **`STATE_SUCCESS`** → Success indicators (green states)
+5. **`STATE_ERROR`** → Error indicators (red alerts)
 
 ### 💡 Pro Tips for Theme Creators
 
