@@ -5,7 +5,6 @@
 
 # Load global configuration
 source "$HOME/.config/sketchybar/config/globals.sh"
-source <( "$HOME/.config/sketchybar/themes/theme-manager.sh" load )
 
 # Aerospace Mode Indicator (centered, separate segment when visible)
 sketchybar --add item aerospace_mode center \
@@ -23,4 +22,4 @@ sketchybar --add item aerospace_mode center \
            label.font="SF Pro:Medium:11.0" \
            script="$PLUGIN_DIR/workspace/aerospace_mode.sh" \
            click_script="aerospace mode main && $PLUGIN_DIR/workspace/aerospace_mode.sh main" \
-           --subscribe aerospace_mode aerospace_mode_change 
+           --subscribe aerospace_mode aerospace_mode_change

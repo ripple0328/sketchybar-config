@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Load global configuration
-source "$HOME/.config/sketchybar/config/globals.sh"
+source "$HOME/.config/sketchybar/config/source_theme.sh"
 
 POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
 
@@ -27,5 +27,3 @@ sketchybar --add       item            github.bell right                  \
                                        background.padding_right=7         \
                                        icon.background.height=2           \
                                        icon.background.y_offset=-12
-
-

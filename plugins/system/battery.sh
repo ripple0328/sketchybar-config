@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Load global configuration
-source "$HOME/.config/sketchybar/config/globals.sh"
+source "$HOME/.config/sketchybar/config/source_theme.sh"
 
 PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
@@ -24,7 +24,7 @@ else
   case "${PERCENTAGE}" in
     9[0-9]|100) ICON="󰁹"  # Full battery
     ;;
-    [6-8][0-9]) ICON="󰂀"  # High battery  
+    [6-8][0-9]) ICON="󰂀"  # High battery
     ;;
     [3-5][0-9]) ICON="󰁾"  # Medium battery
     ;;
@@ -32,12 +32,12 @@ else
     ;;
     *) ICON="󰂎"          # Very low/critical battery
   esac
-  
+
   # Override with charging icon if plugged in
   if [[ "$CHARGING" != "" ]]; then
     ICON="󰂄"  # Charging icon
   fi
-  
+
   LABEL="${PERCENTAGE}%"
 fi
 

@@ -1,11 +1,11 @@
 #!/bin/sh
 
 update() {
-  source "$HOME/.config/sketchybar/config/globals.sh"
-  
+  source "$HOME/.config/sketchybar/config/source_theme.sh"
+
   # GitHub-specific color mappings using semantic theme colors
   GITHUB_ISSUE=$STATE_SUCCESS           # Issues (green - actionable)
-  GITHUB_DISCUSSION=$CONTENT_SECONDARY        # Discussions (neutral)  
+  GITHUB_DISCUSSION=$CONTENT_SECONDARY        # Discussions (neutral)
   GITHUB_PULLREQUEST=$INTERACTIVE_PRIMARY       # Pull Requests (blue - primary action)
   GITHUB_COMMIT=$CONTENT_SECONDARY            # Commits (neutral)
   GITHUB_IMPORTANT=$STATE_ERROR         # Important notifications (red)
@@ -31,7 +31,7 @@ update() {
   COLOR=$GITHUB_BELL_DEFAULT
   args+=(--set github.bell icon.color=$COLOR)
 
-  while read -r repo url type title 
+  while read -r repo url type title
   do
     COUNTER=$((COUNTER + 1))
     # Limit to 10 notifications
@@ -45,7 +45,7 @@ update() {
     if [ "${repo}" = "" ] && [ "${title}" = "" ]; then
       repo="Note"
       title="No new notifications"
-    fi 
+    fi
     case "${type}" in
       "'Issue'") COLOR=$GITHUB_ISSUE; ICON=$GIT_ISSUE; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
       ;;
@@ -56,13 +56,13 @@ update() {
       "'Commit'") COLOR=$GITHUB_COMMIT; ICON=$GIT_COMMIT; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
       ;;
     esac
-    
+
     if [ "$IMPORTANT" != "" ]; then
       COLOR=$GITHUB_IMPORTANT
       ICON=􀁞
       args+=(--set github.bell icon.color=$COLOR)
     fi
-    
+
     args+=(--clone github.notification.$COUNTER github.template \
            --set github.notification.$COUNTER label="$(echo "$title" | sed -e "s/^'//" -e "s/'$//")" \
                                             icon="$ICON $(echo "$repo" | sed -e "s/^'//" -e "s/'$//"):" \

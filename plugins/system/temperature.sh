@@ -4,7 +4,7 @@
 # Attempts to get CPU temperature using available methods
 
 # Source colors
-source <( "$HOME/.config/sketchybar/themes/theme-manager.sh" load )
+source "$HOME/.config/sketchybar/config/source_theme.sh"
 
 TEMP=""
 
@@ -37,7 +37,7 @@ fi
 # Set color based on temperature using semantic colors
 if [ "$TEMP" != "--" ]; then
     TEMP_INT=$(echo "$TEMP" | cut -d. -f1)
-    
+
     if [ "$TEMP_INT" -ge 80 ]; then
         COLOR=$STATE_ERROR        # Critical temperature - red
     elif [ "$TEMP_INT" -ge 70 ]; then
@@ -47,7 +47,7 @@ if [ "$TEMP" != "--" ]; then
     else
         COLOR=$STATE_SUCCESS      # Normal temperature - green
     fi
-    
+
     LABEL="${TEMP}°C"
 else
     COLOR=$CONTENT_TERTIARY             # No temperature data - subtle text

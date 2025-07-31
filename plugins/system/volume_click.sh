@@ -15,7 +15,7 @@ toggle_mute() {
 
 toggle_devices() {
   which SwitchAudioSource >/dev/null || exit 0
-  source <( "$HOME/.config/sketchybar/themes/theme-manager.sh" load )
+  source "$HOME/.config/sketchybar/config/source_theme.sh"
 
   args=(--remove '/volume.device\.*/' --set "$NAME" popup.drawing=toggle)
   COUNTER=0

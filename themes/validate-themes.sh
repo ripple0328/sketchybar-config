@@ -14,19 +14,8 @@ else
     # Running from repo root (CI scenario)
     THEME_DIR="$SCRIPT_DIR/themes"
 fi
-<<<<<<< HEAD
 # Get themes from the theme manager
 THEMES=($("$THEME_DIR/theme-manager.sh" list))
-=======
-# Dynamically find available themes
-THEMES=()
-for theme_file in "$THEME_DIR"/*.theme.sh; do
-    if [ -f "$theme_file" ]; then
-        theme_name=$(basename "$theme_file" .theme.sh)
-        THEMES+=("$theme_name")
-    fi
-done
->>>>>>> main
 
 # Required core colors that all themes must have
 REQUIRED_COLORS=(
@@ -38,14 +27,14 @@ REQUIRED_COLORS=(
     "SURFACE_ELEVATED"
     "SEGMENT_PRIMARY"
     "SEGMENT_SECONDARY"
-    
+
     # Content Colors (text, icons)
     "CONTENT_PRIMARY"
     "CONTENT_SECONDARY"
     "CONTENT_TERTIARY"
     "CONTENT_INVERSE"
     "CONTENT_DISABLED"
-    
+
     # Interactive Colors (buttons, links, controls)
     "INTERACTIVE_PRIMARY"
     "INTERACTIVE_SECONDARY"
@@ -54,27 +43,27 @@ REQUIRED_COLORS=(
     "INTERACTIVE_ACTIVE"
     "INTERACTIVE_DISABLED"
     "INTERACTIVE_FOCUS"
-    
+
     # State Colors (alerts, status, semantic states)
     "STATE_SUCCESS"
     "STATE_WARNING"
     "STATE_CAUTION"
     "STATE_ERROR"
     "STATE_INFO"
-    
+
     # Border Colors (dividers, outlines)
     "BORDER_PRIMARY"
     "BORDER_SECONDARY"
     "BORDER_FOCUS"
     "BORDER_DIVIDER"
-    
+
     # Workspace Colors (workspace states)
     "WORKSPACE_FOCUSED"
     "WORKSPACE_ACTIVE"
     "WORKSPACE_UNFOCUSED"
     "WORKSPACE_OCCUPIED"
     "WORKSPACE_EMPTY"
-    
+
     # Typography
     "FONT"
     "FONT_FAMILY_PRIMARY"
@@ -83,7 +72,7 @@ REQUIRED_COLORS=(
     "FONT_SIZE_SMALL"
     "FONT_SIZE_MEDIUM"
     "FONT_SIZE_LARGE"
-    
+
     # Essential SketchyBar Variables
     "TRANSPARENT"
     "POPUP_BACKGROUND_COLOR"
@@ -105,27 +94,27 @@ TOTAL_ERRORS=0
 for theme in "${THEMES[@]}"; do
     echo ""
     echo -e "${TERM_BLUE}Checking theme: ${TERM_YELLOW}$theme${NC}"
-    
+
     theme_file="$THEME_DIR/$theme.theme.sh"
-    
+
     if [ ! -f "$theme_file" ]; then
         echo -e "  ${TERM_RED}❌ Theme file not found: $theme_file${NC}"
         TOTAL_ERRORS=$((TOTAL_ERRORS + 1))
         continue
     fi
-    
+
     # Source the theme to check for colors
     source "$theme_file"
-    
+
     MISSING_COLORS=()
-    
+
     for color in "${REQUIRED_COLORS[@]}"; do
         # Check if the color variable is defined and not empty
         if [ -z "${!color}" ]; then
             MISSING_COLORS+=("$color")
         fi
     done
-    
+
     if [ ${#MISSING_COLORS[@]} -eq 0 ]; then
         echo -e "  ${TERM_GREEN}✅ All required colors defined${NC}"
     else
