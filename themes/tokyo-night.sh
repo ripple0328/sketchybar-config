@@ -1,77 +1,74 @@
 #!/usr/bin/env sh
 
-# Catppuccin Macchiato Theme - Semantic Version
-# Industry-standard semantic naming with Catppuccin color values
+# Tokyo Night Theme - Semantic Version
+# Industry-standard semantic naming with Tokyo Night color values
 
 #===============================================================================
 # SURFACE COLORS (backgrounds, cards, overlays)
 #===============================================================================
 
-export BACKGROUND_PRIMARY=0xff24273a      # Main app background (Catppuccin base)
-export BACKGROUND_SECONDARY=0x903c3e4f    # Card/section backgrounds (Catppuccin surface0)
-export BACKGROUND_TERTIARY=0x90494d64     # Subtle section backgrounds (Catppuccin surface1)
-export SURFACE_OVERLAY=0xff1e2030         # Modal/popup backgrounds (Catppuccin mantle)
-export SURFACE_ELEVATED=0xff363a4f        # Raised card backgrounds (Catppuccin surface2)
+export SURFACE_BASE=0xff1a1b26            # Main app background (Tokyo Night bg)
+export SURFACE_CONTAINER_PRIMARY=0x9024283b    # Primary section backgrounds (Tokyo Night bg_dark)
+export SURFACE_CONTAINER_SECONDARY=0x90414868  # Secondary section backgrounds (Tokyo Night bg_highlight)
+export SURFACE_OVERLAY=0xff16161e         # Modal/popup backgrounds (Tokyo Night bg_darker)
+export SURFACE_ELEVATED=0xff24283b        # Raised card backgrounds (Tokyo Night bg_dark)
 
 #===============================================================================
 # CONTENT COLORS (text, icons)
 #===============================================================================
 
-export TEXT_PRIMARY=0xffcad3f5            # Main content text (Catppuccin text)
-export TEXT_SECONDARY=0xffbcc0cc          # Supporting text (Catppuccin subtext1)
-export TEXT_TERTIARY=0xffa5adcb           # Subtle/disabled text (Catppuccin subtext0)
-export TEXT_INVERSE=0xff181926            # Text on colored backgrounds (Catppuccin base)
-
-export ICON_PRIMARY=0xffcad3f5            # Main icons (Catppuccin text)
-export ICON_SECONDARY=0xffbcc0cc          # Supporting icons (Catppuccin subtext1)
-export ICON_TERTIARY=0xffa5adcb           # Subtle icons (Catppuccin subtext0)
+export CONTENT_PRIMARY=0xffc0caf5         # Main content text and icons (Tokyo Night fg)
+export CONTENT_SECONDARY=0xffa9b1d6       # Supporting content (Tokyo Night fg_dark)
+export CONTENT_TERTIARY=0xff565f89        # Subtle/disabled content (Tokyo Night comment)
+export CONTENT_INVERSE=0xff1a1b26         # Content on colored backgrounds (Tokyo Night bg)
+export CONTENT_DISABLED=0xff565f89        # Disabled content state (Tokyo Night comment)
 
 #===============================================================================
 # INTERACTIVE COLORS (buttons, links, controls)
 #===============================================================================
 
-export ACCENT_PRIMARY=0xff8aadf4          # Primary brand actions (Catppuccin blue)
-export ACCENT_SECONDARY=0xffc6a0f6        # Secondary actions (Catppuccin mauve)
+export INTERACTIVE_PRIMARY=0xff7aa2f7     # Primary brand actions and focus (Tokyo Night blue)
+export INTERACTIVE_SECONDARY=0xffbb9af7   # Secondary actions (Tokyo Night purple)
+export INTERACTIVE_SELECTED=0xffc0caf5    # Selected/active items (Tokyo Night fg)
 
-export INTERACTIVE_HOVER=0x60cad3f5       # Hover states (Catppuccin text with transparency)
-export INTERACTIVE_ACTIVE=0x808aadf4      # Pressed states (Catppuccin blue with transparency)
-export INTERACTIVE_DISABLED=0x40939ab7    # Disabled states (Catppuccin overlay2)
-export INTERACTIVE_FOCUS=0xff8aadf4       # Focus outlines (Catppuccin blue)
+export INTERACTIVE_HOVER=0x60c0caf5       # Hover states (Tokyo Night fg with transparency)
+export INTERACTIVE_ACTIVE=0x807aa2f7      # Pressed states (Tokyo Night blue with transparency)
+export INTERACTIVE_DISABLED=0x40565f89    # Disabled states (Tokyo Night comment)
+export INTERACTIVE_FOCUS=0xff7aa2f7       # Focus outlines (Tokyo Night blue)
 
 #===============================================================================
-# FEEDBACK COLORS (alerts, status, semantic states)
+# STATE COLORS (alerts, status, semantic states)
 #===============================================================================
 
-export FEEDBACK_SUCCESS=0xffa6da95        # Success states (Catppuccin green)
-export FEEDBACK_WARNING=0xffeed49f        # Warning states (Catppuccin yellow)
-export FEEDBACK_ERROR=0xffed8796          # Error states (Catppuccin red)
-export FEEDBACK_INFO=0xff8aadf4           # Informational states (Catppuccin blue)
+export STATE_SUCCESS=0xff9ece6a          # Success states (Tokyo Night green)
+export STATE_WARNING=0xffe0af68          # Warning states (Tokyo Night yellow)
+export STATE_CAUTION=0xffe0af68          # Medium warning level (Tokyo Night yellow)
+export STATE_ERROR=0xfff7768e            # Error states (Tokyo Night red)
+export STATE_INFO=0xff7dcfff             # Informational states (Tokyo Night cyan)
 
 #===============================================================================
 # BORDER COLORS (dividers, outlines)
 #===============================================================================
 
-export BORDER_PRIMARY=0xff6e738d          # Main borders (Catppuccin overlay1)
-export BORDER_SECONDARY=0xff5b6078        # Subtle borders (Catppuccin overlay0)
-export BORDER_FOCUS=0xff8aadf4            # Focus outlines (Catppuccin blue)
-export BORDER_DIVIDER=0xff494d64          # Section separators (Catppuccin surface1)
+export BORDER_PRIMARY=0xff565f89          # Main borders (Tokyo Night comment)
+export BORDER_SECONDARY=0xff3b4261        # Subtle borders (Tokyo Night border)
+export BORDER_FOCUS=0xff7aa2f7            # Focus outlines (Tokyo Night blue)
+export BORDER_DIVIDER=0xff414868          # Section separators (Tokyo Night bg_highlight)
 
 #===============================================================================
 # SPECIALIZED SYSTEM COLORS
 #===============================================================================
 
-# System status colors (for monitoring)
-export STATUS_SUCCESS=$FEEDBACK_SUCCESS    # System healthy
-export STATUS_WARNING=$FEEDBACK_WARNING    # System attention needed
-export STATUS_ERROR=$FEEDBACK_ERROR        # System critical
-export STATUS_NEUTRAL=$TEXT_SECONDARY      # System neutral
+# Workspace states (specific semantic meanings)
+export WORKSPACE_FOCUSED=0x997aa2f7       # Currently focused workspace with focused app (semi-transparent blue)
+export WORKSPACE_ACTIVE=$INTERACTIVE_HOVER # Active workspace (current but no focused app)
+export WORKSPACE_UNFOCUSED=$CONTENT_TERTIARY # Inactive workspaces
+export WORKSPACE_OCCUPIED=$STATE_SUCCESS   # Workspaces with windows
+export WORKSPACE_EMPTY=$CONTENT_TERTIARY   # Empty workspaces
 
-# Workspace states
-export WORKSPACE_ACTIVE=0x998aadf4         # Currently focused workspace (semi-transparent blue)
-export WORKSPACE_INACTIVE=$TEXT_TERTIARY   # Inactive workspaces
-export WORKSPACE_HOVER=$INTERACTIVE_HOVER  # Workspace hover state
-export WORKSPACE_OCCUPIED=$FEEDBACK_SUCCESS # Workspaces with windows
-export WORKSPACE_EMPTY=$TEXT_TERTIARY      # Empty workspaces
+# Segment backgrounds (for visual grouping)
+export SEGMENT_PRIMARY=$SURFACE_CONTAINER_PRIMARY    # Primary segments
+export SEGMENT_SECONDARY=$SURFACE_CONTAINER_SECONDARY # Secondary segments
 
 #===============================================================================
 # TYPOGRAPHY (fonts and text styling)
@@ -89,25 +86,10 @@ export FONT_SIZE_LARGE=16                              # Large text/icons
 export FONT="$FONT_FAMILY_PRIMARY"                     # Default font for sketchybar
 
 #===============================================================================
-# SKETCHYBAR SPECIFIC MAPPINGS (only keep variables actually used)
+# SKETCHYBAR MAPPINGS
 #===============================================================================
 
-# Essential color mappings for SketchyBar
-export TRANSPARENT=0x00000000              # Transparent background for main bar
-export ICON_COLOR=$ICON_PRIMARY            # Default icon color
-export LABEL_COLOR=$TEXT_PRIMARY           # Default label color
-
-# Segment backgrounds (used in brackets)
-export BACKGROUND_1=$BACKGROUND_SECONDARY  # Primary segments
-export BACKGROUND_2=$BACKGROUND_TERTIARY   # Secondary segments
-
-# Popup styling
+# Essential SketchyBar mappings
+export TRANSPARENT=0x00000000            # Transparent background for main bar
 export POPUP_BACKGROUND_COLOR=$SURFACE_OVERLAY
 export POPUP_SHADOW_COLOR=0x60000000
-
-# Legacy color aliases (still used by plugins)
-export ACCENT_COLOR=$ACCENT_PRIMARY        # Used in sketchybarrc
-export SUCCESS_COLOR=$FEEDBACK_SUCCESS     # Used by battery, cpu plugins
-export WARNING_COLOR=$FEEDBACK_WARNING     # Used by cpu, memory plugins  
-export ERROR_COLOR=$FEEDBACK_ERROR         # Used by battery, cpu plugins
-export YELLOW=$FEEDBACK_WARNING            # Used by cpu plugin

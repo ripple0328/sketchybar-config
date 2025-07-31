@@ -18,40 +18,48 @@ THEMES=("catppuccin" "tokyo-night" "gruvbox" "nord" "dracula")
 
 # Required core colors that all themes must have
 REQUIRED_COLORS=(
-    # Core Semantic Colors (required for theme system)
-    "BACKGROUND_PRIMARY"
-    "BACKGROUND_SECONDARY"
-    "BACKGROUND_TERTIARY"
+    # Surface Colors (backgrounds, cards, overlays)
+    "SURFACE_BASE"
+    "SURFACE_CONTAINER_PRIMARY"
+    "SURFACE_CONTAINER_SECONDARY"
     "SURFACE_OVERLAY"
     "SURFACE_ELEVATED"
-    "TEXT_PRIMARY"
-    "TEXT_SECONDARY"
-    "TEXT_TERTIARY"
-    "TEXT_INVERSE"
-    "ICON_PRIMARY"
-    "ICON_SECONDARY"
-    "ICON_TERTIARY"
-    "ACCENT_PRIMARY"
-    "ACCENT_SECONDARY"
+    "SEGMENT_PRIMARY"
+    "SEGMENT_SECONDARY"
+    
+    # Content Colors (text, icons)
+    "CONTENT_PRIMARY"
+    "CONTENT_SECONDARY"
+    "CONTENT_TERTIARY"
+    "CONTENT_INVERSE"
+    "CONTENT_DISABLED"
+    
+    # Interactive Colors (buttons, links, controls)
+    "INTERACTIVE_PRIMARY"
+    "INTERACTIVE_SECONDARY"
+    "INTERACTIVE_SELECTED"
     "INTERACTIVE_HOVER"
     "INTERACTIVE_ACTIVE"
     "INTERACTIVE_DISABLED"
     "INTERACTIVE_FOCUS"
-    "FEEDBACK_SUCCESS"
-    "FEEDBACK_WARNING"
-    "FEEDBACK_ERROR"
-    "FEEDBACK_INFO"
+    
+    # State Colors (alerts, status, semantic states)
+    "STATE_SUCCESS"
+    "STATE_WARNING"
+    "STATE_CAUTION"
+    "STATE_ERROR"
+    "STATE_INFO"
+    
+    # Border Colors (dividers, outlines)
     "BORDER_PRIMARY"
     "BORDER_SECONDARY"
     "BORDER_FOCUS"
     "BORDER_DIVIDER"
-    "STATUS_SUCCESS"
-    "STATUS_WARNING"
-    "STATUS_ERROR"
-    "STATUS_NEUTRAL"
+    
+    # Workspace Colors (workspace states)
+    "WORKSPACE_FOCUSED"
     "WORKSPACE_ACTIVE"
-    "WORKSPACE_INACTIVE"
-    "WORKSPACE_HOVER"
+    "WORKSPACE_UNFOCUSED"
     "WORKSPACE_OCCUPIED"
     "WORKSPACE_EMPTY"
     
@@ -64,19 +72,10 @@ REQUIRED_COLORS=(
     "FONT_SIZE_MEDIUM"
     "FONT_SIZE_LARGE"
     
-    # Essential SketchyBar Variables (actually used)
+    # Essential SketchyBar Variables
     "TRANSPARENT"
-    "ICON_COLOR"
-    "LABEL_COLOR"
-    "BACKGROUND_1"
-    "BACKGROUND_2"
     "POPUP_BACKGROUND_COLOR"
     "POPUP_SHADOW_COLOR"
-    "ACCENT_COLOR"
-    "SUCCESS_COLOR"
-    "WARNING_COLOR"
-    "ERROR_COLOR"
-    "YELLOW"
 )
 
 # Terminal colors for output (avoid conflicts with theme colors)

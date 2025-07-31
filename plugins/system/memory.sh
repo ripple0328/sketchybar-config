@@ -31,13 +31,13 @@ fi
 
 # Set color based on usage using new semantic colors
 if [ "$MEMORY_INT" -ge 85 ]; then
-  COLOR=$ERROR_COLOR     # High memory usage - red
+  COLOR=$STATE_ERROR     # High memory usage - red
 elif [ "$MEMORY_INT" -ge 70 ]; then
-  COLOR=$WARNING_COLOR   # Medium-high memory usage - orange
+  COLOR=$STATE_WARNING   # Medium-high memory usage - orange
 elif [ "$MEMORY_INT" -ge 50 ]; then
-  COLOR=$YELLOW          # Medium memory usage - yellow
+  COLOR=$STATE_CAUTION          # Medium memory usage
 else
-  COLOR=$ACCENT_COLOR    # Low memory usage - accent blue
+  COLOR=$INTERACTIVE_PRIMARY    # Low memory usage - accent blue
 fi
 
 # Update the item

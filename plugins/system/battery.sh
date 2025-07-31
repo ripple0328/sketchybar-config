@@ -44,16 +44,16 @@ fi
 # Determine colors based on battery state
 if [[ "$CHARGING" != "" ]]; then
   # Charging - use success color
-  COLOR=$SUCCESS_COLOR
+  COLOR=$STATE_SUCCESS
 elif [ "$PERCENTAGE" != "" ] && [ "$PERCENTAGE" -le 20 ]; then
   # Low battery - use error color
-  COLOR=$ERROR_COLOR
+  COLOR=$STATE_ERROR
 elif [ "$PERCENTAGE" != "" ] && [ "$PERCENTAGE" -le 40 ]; then
   # Medium battery - use warning color
-  COLOR=$WARNING_COLOR
+  COLOR=$STATE_WARNING
 else
   # Normal state - use default icon color
-  COLOR=$ICON_COLOR
+  COLOR=$CONTENT_PRIMARY
 fi
 
 # Update the item with appropriate icon, label, and color

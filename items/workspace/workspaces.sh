@@ -27,12 +27,12 @@ for i in "${!WORKSPACE_LIST[@]}"; do
         --set space.$sid \
         icon="$sid" \
         icon.font="MesloLGS Nerd Font:Regular:13.0" \
-        icon.color=$WORKSPACE_INACTIVE \
+        icon.color=$WORKSPACE_UNFOCUSED \
         icon.padding_left=10 \
         icon.padding_right=4 \
         icon.drawing=on \
         label="" \
-        label.color=$TEXT_INVERSE \
+        label.color=$CONTENT_INVERSE \
         label.font="sketchybar-app-font:Regular:13.0" \
         label.drawing=off \
         label.padding_left=2 \

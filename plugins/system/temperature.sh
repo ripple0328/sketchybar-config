@@ -39,18 +39,18 @@ if [ "$TEMP" != "--" ]; then
     TEMP_INT=$(echo "$TEMP" | cut -d. -f1)
     
     if [ "$TEMP_INT" -ge 80 ]; then
-        COLOR=$FEEDBACK_ERROR        # Critical temperature - red
+        COLOR=$STATE_ERROR        # Critical temperature - red
     elif [ "$TEMP_INT" -ge 70 ]; then
-        COLOR=$FEEDBACK_WARNING      # High temperature - orange/yellow
+        COLOR=$STATE_WARNING      # High temperature - orange/yellow
     elif [ "$TEMP_INT" -ge 60 ]; then
-        COLOR=$FEEDBACK_WARNING      # Medium-high temperature - orange/yellow
+        COLOR=$STATE_WARNING      # Medium-high temperature - orange/yellow
     else
-        COLOR=$FEEDBACK_SUCCESS      # Normal temperature - green
+        COLOR=$STATE_SUCCESS      # Normal temperature - green
     fi
     
     LABEL="${TEMP}°C"
 else
-    COLOR=$TEXT_TERTIARY             # No temperature data - subtle text
+    COLOR=$CONTENT_TERTIARY             # No temperature data - subtle text
     LABEL="--°C"
 fi
 

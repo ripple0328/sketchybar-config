@@ -4,13 +4,13 @@ update() {
   source "$HOME/.config/sketchybar/config/globals.sh"
   
   # GitHub-specific color mappings using semantic theme colors
-  GITHUB_ISSUE=$FEEDBACK_SUCCESS           # Issues (green - actionable)
-  GITHUB_DISCUSSION=$TEXT_SECONDARY        # Discussions (neutral)  
-  GITHUB_PULLREQUEST=$ACCENT_PRIMARY       # Pull Requests (blue - primary action)
-  GITHUB_COMMIT=$TEXT_SECONDARY            # Commits (neutral)
-  GITHUB_IMPORTANT=$FEEDBACK_ERROR         # Important notifications (red)
-  GITHUB_BELL_DEFAULT=$ACCENT_PRIMARY      # Default bell color
-  GITHUB_BELL_ACTIVE=$FEEDBACK_WARNING     # Bell with notifications
+  GITHUB_ISSUE=$STATE_SUCCESS           # Issues (green - actionable)
+  GITHUB_DISCUSSION=$CONTENT_SECONDARY        # Discussions (neutral)  
+  GITHUB_PULLREQUEST=$INTERACTIVE_PRIMARY       # Pull Requests (blue - primary action)
+  GITHUB_COMMIT=$CONTENT_SECONDARY            # Commits (neutral)
+  GITHUB_IMPORTANT=$STATE_ERROR         # Important notifications (red)
+  GITHUB_BELL_DEFAULT=$INTERACTIVE_PRIMARY      # Default bell color
+  GITHUB_BELL_ACTIVE=$STATE_WARNING     # Bell with notifications
 
   NOTIFICATIONS="$(gh api notifications)"
   COUNT="$(echo "$NOTIFICATIONS" | jq 'length')"
@@ -39,7 +39,7 @@ update() {
       break
     fi
     IMPORTANT="$(echo "$title" | egrep -i "(deprecat|break|broke)")"
-    COLOR=$BLUE
+    COLOR=$CONTENT_SECONDARY
     PADDING=0
 
     if [ "${repo}" = "" ] && [ "${title}" = "" ]; then

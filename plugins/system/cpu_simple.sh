@@ -18,13 +18,13 @@ CPU_INT=$(echo "$CPU_USAGE" | cut -d. -f1)
 
 # Set color based on usage using new semantic colors
 if [ "$CPU_INT" -ge 80 ]; then
-  COLOR=$ERROR_COLOR     # High CPU usage - red
+  COLOR=$STATE_ERROR     # High CPU usage - red
 elif [ "$CPU_INT" -ge 60 ]; then
-  COLOR=$WARNING_COLOR   # Medium-high CPU usage - orange
+  COLOR=$STATE_WARNING   # Medium-high CPU usage - orange
 elif [ "$CPU_INT" -ge 40 ]; then
-  COLOR=$YELLOW          # Medium CPU usage - yellow
+  COLOR=$STATE_CAUTION          # Medium CPU usage
 else
-  COLOR=$SUCCESS_COLOR   # Low CPU usage - green
+  COLOR=$STATE_SUCCESS   # Low CPU usage - green
 fi
 
 # Update the item

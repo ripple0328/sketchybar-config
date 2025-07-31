@@ -11,7 +11,7 @@ sketchybar --add item temperature right \
            --set temperature \
            update_freq=5 \
                    icon="$TEMPERATURE" \
-        icon.color=$WARNING_COLOR \
+        icon.color=$STATE_WARNING \
            background.drawing=off \
            padding_right=20 \
            script="$PLUGIN_DIR/system/temperature.sh"
@@ -21,7 +21,7 @@ sketchybar --add item memory right \
            --set memory \
            update_freq=5 \
                    icon="$MEMORY" \
-        icon.color=$ACCENT_COLOR \
+        icon.color=$INTERACTIVE_PRIMARY \
            background.drawing=off \
            script="$PLUGIN_DIR/system/memory.sh"
 
@@ -30,6 +30,6 @@ sketchybar --add item cpu_simple right \
            --set cpu_simple \
            update_freq=2 \
                    icon="$CPU" \
-        icon.color=$SUCCESS_COLOR \
+        icon.color=$STATE_SUCCESS \
            background.drawing=off \
            script="$PLUGIN_DIR/system/cpu_simple.sh"

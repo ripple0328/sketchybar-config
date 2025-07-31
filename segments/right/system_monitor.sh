@@ -9,6 +9,6 @@ source "$HOME/.config/sketchybar/config/globals.sh"
 # Create bracket for system monitor
 sketchybar --add bracket system_monitor cpu_simple memory temperature \
            --set system_monitor position=right \
-                               background.color=$BACKGROUND_2 \
+                               background.color=$SEGMENT_SECONDARY \
                                background.corner_radius=16 \
                                background.height=32

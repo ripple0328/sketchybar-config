@@ -75,12 +75,12 @@ if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
         # Enhanced highlight when workspace contains focused app
         sketchybar --set $NAME \
             background.drawing=on \
-            background.color=$WORKSPACE_ACTIVE \
+            background.color=$WORKSPACE_FOCUSED \
             background.corner_radius=15 \
             background.border_width=1 \
             background.border_color=$BORDER_FOCUS \
-            label.color=$ACCENT_PRIMARY \
-            icon.color=$TEXT_INVERSE \
+            label.color=$INTERACTIVE_PRIMARY \
+            icon.color=$CONTENT_INVERSE \
             label="$APP_ICONS" \
             label.drawing=on \
             label.padding_left=2 \
@@ -91,11 +91,11 @@ if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
         # Normal active workspace highlight
         sketchybar --set $NAME \
             background.drawing=on \
-            background.color=$WORKSPACE_HOVER \
+            background.color=$WORKSPACE_FOCUSED \
             background.corner_radius=15 \
             background.border_width=0 \
-            label.color=$ACCENT_PRIMARY \
-            icon.color=$TEXT_INVERSE \
+            label.color=$INTERACTIVE_PRIMARY \
+            icon.color=$CONTENT_INVERSE \
             label="$APP_ICONS" \
             label.drawing=on \
             label.padding_left=2 \
@@ -107,8 +107,8 @@ else
     # Dim the inactive workspace and hide app icons
     sketchybar --set $NAME \
         background.drawing=off \
-        label.color=$WORKSPACE_INACTIVE \
-        icon.color=$WORKSPACE_INACTIVE \
+        label.color=$WORKSPACE_UNFOCUSED \
+        icon.color=$WORKSPACE_UNFOCUSED \
         label="" \
         label.drawing=off
 fi

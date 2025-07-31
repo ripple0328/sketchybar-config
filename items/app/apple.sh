@@ -20,7 +20,7 @@ sketchybar --add item apple.logo left \
            --set apple.logo \
            icon=$APPLE \
            icon.font="MesloLGS Nerd Font:Black:16.0" \
-           icon.color=$SUCCESS_COLOR \
+           icon.color=$STATE_SUCCESS \
            background.drawing=off \
            label.drawing=off \
            padding_left=10 \
