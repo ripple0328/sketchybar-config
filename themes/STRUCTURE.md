@@ -12,7 +12,6 @@ Perfect organization achieved! All theme-related files are now properly consolid
 sketchybar/
 ├── README.md                    # 🏠 Main documentation with navigation
 ├── sketchybarrc                 # ⚙️ Main SketchyBar configuration
-├── icons.sh                     # 🎭 Icon definitions
 ├── images/                      # 📸 Screenshots
 ├── items/                       # 📦 SketchyBar item configurations
 ├── plugins/                     # 🔌 SketchyBar plugin scripts

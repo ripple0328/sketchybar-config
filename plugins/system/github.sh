@@ -3,6 +3,14 @@
 update() {
   source "$HOME/.config/sketchybar/config/source_theme.sh"
 
+  # Git Icons
+  GIT_ISSUE=􀍷
+  GIT_DISCUSSION=􀒤
+  GIT_PULL_REQUEST=􀙡
+  GIT_COMMIT=􀡚
+  BELL=􀋚
+  BELL_DOT=􀝗
+
   # GitHub-specific color mappings using semantic theme colors
   GITHUB_ISSUE=$STATE_SUCCESS           # Issues (green - actionable)
   GITHUB_DISCUSSION=$CONTENT_SECONDARY        # Discussions (neutral)

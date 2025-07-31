@@ -6,6 +6,11 @@
 # Load global configuration
 source "$HOME/.config/sketchybar/config/globals.sh"
 
+# System Monitor Icons
+CPU=􀧓
+MEMORY=􀫦
+TEMPERATURE=􀇬
+
 # Temperature (rightmost item in system monitor segment)
 sketchybar --add item temperature right \
            --set temperature \

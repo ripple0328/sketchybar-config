@@ -22,8 +22,3 @@ else
     echo "Warning: Theme file $THEME_FILE not found" >&2
 fi
 
-# Also source icons
-ICONS_FILE="$HOME/.config/sketchybar/icons.sh"
-if [ -f "$ICONS_FILE" ]; then
-    . "$ICONS_FILE"
-fi

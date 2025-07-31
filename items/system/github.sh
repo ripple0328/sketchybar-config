@@ -3,6 +3,11 @@
 # Load global configuration
 source "$HOME/.config/sketchybar/config/source_theme.sh"
 
+# GitHub Icons
+LOADING=􀖇
+BELL=􀋚
+BELL_DOT=􀝗
+
 POPUP_CLICK_SCRIPT="sketchybar --set \$NAME popup.drawing=toggle"
 
 sketchybar --add       item            github.bell right                  \

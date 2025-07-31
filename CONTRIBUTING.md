@@ -11,8 +11,6 @@ sketchybar/
 ├── sketchybarrc                      # Main config - orchestrates loading
 ├── README.md                         # User documentation
 ├── CONTRIBUTING.md                   # This developer guide
-├── MIGRATION.md                      # Migration guide from old structure
-├── icons.sh                          # Icon definitions
 ├── config/                           # Core configuration
 │   ├── globals.sh                   # Global variables and paths
 │   ├── bar.sh                       # Bar appearance settings
@@ -116,7 +114,7 @@ Each type of file has a specific, well-defined purpose:
 ```
 Configuration Loading Order:
 1. Global variables and theme loading
-2. Bar appearance and default item settings  
+2. Bar appearance and default item settings
 3. Event definitions
 4. Item definitions (what appears)
 5. Segment groupings (visual organization)
@@ -128,7 +126,7 @@ Configuration Loading Order:
 Files are grouped by functionality, not file type:
 
 - **System**: System monitoring, status, hardware-related
-- **Workspace**: Aerospace, workspaces, window management  
+- **Workspace**: Aerospace, workspaces, window management
 - **App**: Application-related items and functionality
 - **Utils**: Shared utilities and helper scripts
 
@@ -137,7 +135,7 @@ Files are grouped by functionality, not file type:
 - **Items**: Use descriptive names indicating what they display
   - `items/system/battery.sh` - Battery status item definition
   - `items/workspace/workspaces.sh` - Workspace items definition
-  
+
 - **Plugins**: Use descriptive names indicating what they do
   - `plugins/system/battery.sh` - Updates battery display content
   - `plugins/workspace/aerospace.sh` - Updates workspace state
@@ -161,7 +159,7 @@ Files are grouped by functionality, not file type:
 # 1. Item definition
 items/system/weather.sh          # Defines the weather item
 
-# 2. Plugin script  
+# 2. Plugin script
 plugins/system/weather.sh        # Updates weather content
 
 # 3. Add to segment
@@ -193,7 +191,7 @@ See [themes/README.md](themes/README.md) for theme creation guide.
 ### When Debugging:
 
 1. **Check item definition** for basic configuration issues
-2. **Check plugin script** for content generation problems  
+2. **Check plugin script** for content generation problems
 3. **Check segment definition** for visual grouping issues
 4. **Check global config** for path or variable problems
 

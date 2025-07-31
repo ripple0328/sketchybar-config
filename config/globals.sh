@@ -14,6 +14,5 @@ export THEME_DIR="$SKETCHYBAR_CONFIG/themes"
 export PADDINGS=3
 export SEGMENT_SPACING=12
 
-# Load Theme and Icons
+# Load Theme
 source <( "$THEME_DIR/theme-manager.sh" load )  # Load current theme colors
-source "$SKETCHYBAR_CONFIG/icons.sh"  # Load all defined icons
